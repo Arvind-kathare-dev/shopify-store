@@ -1,6 +1,7 @@
 // sections/NumbersAdvanced.tsx
 "use client";
 
+import { Card } from "@/components/card/Card";
 import { motion } from "framer-motion";
 
 const stats = [
@@ -8,6 +9,7 @@ const stats = [
     value: "23%",
     title: "Only 23% of Shopify stores have a mobile app",
     desc: "Your competitors who go mobile first are capturing revenue you're leaving on the table.",
+    
   },
   {
     value: "3×",
@@ -33,15 +35,15 @@ const fadeUp = {
 export default function NumbersAdvanced() {
   return (
     <section className="py-24 bg-gradient-to-b from-white to-[#F7F7FB]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+      <div className="w-full flex flex-col gap-[45px] mx-auto px-6 lg:px-16">
 
         {/* HEADER */}
-        <div className="mb-12">
-          <p className="text-xs tracking-widest text-gray-400 uppercase mb-2">
+        <div className="flex flex-col gap-[11px]">
+          <p className="font-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
             The Mobile Opportunity
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-900">
+          <h2 className=" font-bold text-2xl leading-none tracking-normal">
             The Numbers don’t Lie — Mobile Wins
           </h2>
         </div>
@@ -49,31 +51,13 @@ export default function NumbersAdvanced() {
         {/* CARDS */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {stats.map((item, i) => (
-            <motion.div
+          {stats?.map((item, i) => (
+            <Card
               key={i}
-              custom={i}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-white border border-[#E7E3F3] rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-            >
-              {/* VALUE */}
-              <h3 className="text-3xl font-bold text-purple-500 mb-4">
-                {item.value}
-              </h3>
-
-              {/* TITLE */}
-              <p className="text-sm font-medium text-gray-900 leading-snug mb-2">
-                {item.title}
-              </p>
-
-              {/* DESC */}
-              <p className="text-xs text-gray-500 leading-relaxed">
-                {item.desc}
-              </p>
-            </motion.div>
+              value={item.value}
+              title={item.title}
+              desc={item.desc}
+            />
           ))}
 
         </div>

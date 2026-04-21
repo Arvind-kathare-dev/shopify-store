@@ -32,7 +32,7 @@ export function CustomInput({
       {/* Label */}
       <label className="block text-[13px] font-medium text-[#2F274A] mb-1.5 tracking-wide">
         {label}
-        {required && <span className="text-purple-500 ml-0.5">*</span>}
+        {required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
 
       {/* Input */}

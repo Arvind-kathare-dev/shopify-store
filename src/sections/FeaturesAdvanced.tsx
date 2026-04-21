@@ -1,7 +1,8 @@
-// sections/FeaturesAdvanced.tsx
 "use client";
 
 import { motion } from "framer-motion";
+import { ShoppingCart } from "lucide-react";
+import Image from "next/image";
 
 const fade = {
   hidden: { opacity: 0, y: 30 },
@@ -14,168 +15,204 @@ const fade = {
 
 export default function FeaturesAdvanced() {
   return (
-    <section className="py-24 bg-[#F7F7FB]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-16">
-
+    <section className="bg-white py-16 px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* HEADER */}
-        <div className="text-center mb-16">
-          <p className="text-xs tracking-widest text-gray-400 uppercase mb-2">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <p className="text-xs tracking-widest uppercase text-neutral">
             Engineered for revenue
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-semibold">
+          <h2 className="text-2xl sm:text-3xl font-bold">
             Everything You Need{" "}
-            <span className="text-purple-500">
-              to Sell more on Mobile
-            </span>
+            <span className="text-secondary">to Sell more on Mobile</span>
           </h2>
 
-          <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
-            Deep Shopify integration with a native experience your
-            customers will actually buy from
+          <p className="text-sm sm:text-base text-neutral">
+            Deep Shopify integration with a native experience your customers
+            will actually buy from
           </p>
         </div>
 
-        {/* MAIN GRID */}
-        <div className="grid lg:grid-cols-12 gap-6">
-
-          {/* LEFT BIG CARD */}
+        {/* GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          {/* LEFT */}
           <motion.div
             custom={0}
             variants={fade}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="lg:col-span-4 bg-[#EDEAF6] rounded-2xl p-6 flex flex-col justify-between"
+            className="lg:col-span-3 bg-gradient-card2 md:h-fit  rounded-2xl px-[32px] pt-[53px] flex flex-col gap-4 justify-between"
           >
-            <div>
-              <h3 className="font-semibold mb-2">
-                True Native Mobile App
-              </h3>
-              <p className="text-sm text-gray-500">
-                Blazing-fast Flutter-powered app published to App Store & Google Play.
+            <div className="flex flex-col gap-1">
+              <h3 className="text-title">True Native Mobile App</h3>
+              <p className="text-caption">
+                Blazing-fast Flutter-powered app published to App Store & Google
+                Play under your brand. No webview, no compromise — ever.
               </p>
             </div>
 
-            {/* Dummy phone UI */}
-            <div className="mt-6 bg-white rounded-xl p-3 shadow-sm">
-              <div className="h-40 rounded-lg bg-gray-100 flex items-center justify-center text-xs text-gray-400">
-                App Preview
-              </div>
+            <div className="relative w-full h-[300px]">
+              <Image
+                src="/images/image3.svg"
+                alt="img"
+                fill
+                className="object-contain" // or object-cover
+              />
             </div>
           </motion.div>
 
-          {/* CENTER LARGE CARD */}
-          <motion.div
-            custom={1}
-            variants={fade}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="lg:col-span-5 bg-[#4C3B78] text-white rounded-2xl p-6 relative overflow-hidden"
-          >
-            <h3 className="font-semibold mb-2">
-              Smart Push Notifications
-            </h3>
-
-            <p className="text-sm text-purple-200">
-              Abandoned cart recovery, flash sales, and personalized nudges.
-            </p>
-
-            <div className="mt-6">
-              <p className="text-3xl font-bold">12.4K</p>
-              <p className="text-sm text-purple-200">
-                Notifications delivered daily
-              </p>
-            </div>
-
-            {/* Floating cards */}
-            <div className="absolute right-6 top-6 w-28 h-36 bg-white/20 rounded-lg" />
-            <div className="absolute right-20 bottom-6 w-32 h-20 bg-white/20 rounded-lg" />
-          </motion.div>
-
-          {/* RIGHT COLUMN */}
-          <div className="lg:col-span-3 flex flex-col gap-6">
-
-            {/* FEATURES COUNT */}
+          {/* CENTER */}
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            {/* TOP */}
             <motion.div
-              custom={2}
+              custom={1}
               variants={fade}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="bg-[#EDEAF6] rounded-2xl p-6"
+              className="bg-[#4C3B78] relative h-[274px] text-white rounded-2xl px-[32px] py-[54px] flex flex-col sm:flex-row justify-between gap-4"
             >
-              <p className="text-sm text-gray-500">Features</p>
-              <p className="text-3xl font-bold text-gray-900">14</p>
-            </motion.div>
+              <div className="max-w-[318px] flex flex-col gap-[45px]">
+                <div>
+                   <h3 className="text-title text-white">Smart Push Notifications</h3>
+                <p className="text-caption">
+                  Abandoned cart recovery, back-in-stock alerts, flash sale
+                  blasts, and personalized nudges — all automated.
+                </p>
+                </div>
+               
 
-            {/* CRO CARD */}
-            <motion.div
-              custom={3}
-              variants={fade}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-[#EDEAF6] rounded-2xl p-6"
-            >
-              <div className="h-20 bg-gray-100 rounded-lg mb-3 flex items-center justify-center text-xs text-gray-400">
-                Product UI
+                <div className="">
+                  <p className="text-2xl sm:text-3xl font-bold">12.4K</p>
+                  <p className="text-xs text-purple-200">Notifications daily</p>
+                </div>
               </div>
 
-              <h3 className="font-semibold mb-1">
-                Built-in CRO Suite
-              </h3>
-
-              <p className="text-sm text-gray-500">
-                Sticky add-to-cart, urgency timers, upsells.
-              </p>
+              <div className="absolute bottom-0 right-0 w-full md:w-[327px] h-auto md:h-[245px]">
+                <Image
+                  src="/images/img4.png"
+                  alt="push"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 640px) 100vw, 160px"
+                />
+              </div>
             </motion.div>
+
+            {/* BOTTOM GRID */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              {/* AI */}
+              <motion.div
+                custom={2}
+                variants={fade}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="bg-background rounded-2xl pl-[32px] pr-[28px] pt-[30px] flex flex-col justify-between gap-[26px]"
+              >
+                <div>
+                  <h3 className="text-title">
+                    AI Personalization
+                  </h3>
+                  <p className="text-caption">
+                    Dynamic home screens, personalized collections, and
+                    AI-powered product recommendations based on each user's
+                    behavior — out of the box.
+                  </p>
+                </div>
+
+                <div className="w-full  justify-center flex items-center">
+                  <Image
+                    src="/images/image4.svg"
+                    alt="ai"
+                   width={238}
+                   height={155}
+                  />
+                </div>
+              </motion.div>
+
+              {/* SHOPIFY */}
+              <motion.div
+                custom={3}
+                variants={fade}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="bg-background-card rounded-2xl pr-[39px] pl-[33px] pb-[3px] pt-[25px] flex flex-col gap-4 max-w-[398px]"
+              >
+                <div className="max-w-[326px]">
+                  <h3 className="text-title">
+                    Real-time Shopify Sync + No-code Config
+                  </h3>
+                  <p className="text-caption">
+                    Products, prices, and inventory sync automatically.
+                    Customize layout, colors, and features from your dashboard —
+                    no developers needed, ever.
+                  </p>
+                </div>
+
+                <div className="relative h-32w-full  justify-center flex items-center">
+                  <Image
+                    src="/images/img4.svg"
+                    alt="shopify"
+                   width={263}
+                   height={158}
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
 
-          {/* BOTTOM LEFT */}
-          <motion.div
-            custom={4}
-            variants={fade}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="lg:col-span-6 bg-[#EDEAF6] rounded-2xl p-6"
-          >
-            <h3 className="font-semibold mb-2">
-              AI Personalization Engine
-            </h3>
+          {/* RIGHT */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            {/* COUNT */}
+            <motion.div
+              custom={4}
+              variants={fade}
+              initial="hidden"
+              whileInView="show"
+              className="bg-background-card rounded-[20px] flex flex-col gap-[26px] py-[27px] px-[26px]"
+            >
+              <div className="w-[55px] h-[55px] p-2 rounded-xl bg-gray-50 flex justify-center items-center">
+                <Image src={"/icons/icon2.svg"} alt="icon" width={30} height={30}/>
+              </div>
+              <div className="flex flex-col gap-[5px]">
+                  <p className="text-lg font-medium">Features</p>
+              <p className="text-[40px] font-bold">14</p>
+              </div>
+            
+            </motion.div>
 
-            <p className="text-sm text-gray-500 mb-4">
-              Dynamic home screens, recommendations based on behavior.
-            </p>
+            {/* CRO */}
+            <motion.div
+              custom={5}
+              variants={fade}
+              initial="hidden"
+              whileInView="show"
+              className="bg-[#EDEAF6] rounded-2xl p-5 flex flex-col gap-4"
+            >
+              <div className="w-full  justify-center flex items-center">
+                <Image
+                  src="/images/image5.svg"
+                  alt="cro"
+                  width={198}
+                  height={167}
+                />
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="h-20 bg-gray-100 rounded-lg" />
-              <div className="h-20 bg-gray-100 rounded-lg" />
-            </div>
-          </motion.div>
+               
+              </div>
 
-          {/* BOTTOM RIGHT */}
-          <motion.div
-            custom={5}
-            variants={fade}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="lg:col-span-6 bg-[#EDEAF6] rounded-2xl p-6"
-          >
-            <h3 className="font-semibold mb-2">
-              Real-time Shopify Sync + No-code Config
-            </h3>
-
-            <p className="text-sm text-gray-500 mb-4">
-              Products, inventory, and orders sync automatically.
-            </p>
-
-            <div className="h-24 bg-gray-100 rounded-lg" />
-          </motion.div>
-
+              <div>
+                <h3 className="text-title">Built-in CRO Suite</h3>
+                <p className="text-caption">
+                  Sticky add-to-cart, urgency timers, social proof, smart
+                  upsells — all pre-built.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

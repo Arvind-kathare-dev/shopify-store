@@ -36,20 +36,20 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-[#F7F7FB]">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="md:px-[109px] md:pt-[90px] md:pb-[65px]  bg-white">
+      <div className="mx-auto px-6 flex flex-col gap-[51px]">
 
         {/* HEADER */}
-        <div className="text-center mb-12">
-          <p className="text-xs tracking-widest text-gray-400 uppercase mb-2">
+        <div className="text-center flex flex-col gap-[7px]">
+          <p className="tfont-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
             FAQ
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-semibold">
-            Got <span className="text-purple-500">questions?</span>
+          <h2 className="font-bold text-2xl leading-none tracking-normal">
+            Got <span className="text-secondary">questions?</span>
           </h2>
 
-          <p className="text-gray-500 text-sm mt-3">
+          <p className="font-normal text-base leading-none tracking-normal text-center text-neutral">
             Everything you need to know about launching your Shopify mobile app.
           </p>
         </div>
@@ -64,8 +64,8 @@ export default function FAQ() {
                 key={i}
                 className={`rounded-xl border transition ${
                   isOpen
-                    ? "border-purple-400 bg-white"
-                    : "border-transparent bg-gray-100"
+                    ? "border-secondary bg-white"
+                    : "border-transparent bg-background-faq"
                 }`}
               >
                 {/* HEADER */}

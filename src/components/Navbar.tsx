@@ -5,9 +5,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import Button from './Button';
+import { AnimatePresence } from 'framer-motion';
+import { FormModal } from './model/FormModal';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,13 +28,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full bg-white z-50 transition-all duration-300 
-       
-      `}
-    >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 md:h-20">
+    <>
+    <nav className='w-full'>
+      <div className="w-full">
+        <div className="flex w-full justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
@@ -53,7 +53,7 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <Button variant='outline'>
+            <Button variant='border' onClick={() => setOpen(true)}>
               Get Started Free
             </Button>
           </div>
@@ -62,7 +62,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-purple-600 focus:outline-none transition-colors duration-200"
+              className="text-gray-700 hover:text-secondary focus:outline-none transition-colors duration-200"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -72,29 +72,38 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${isOpen
+          className={`md:hidden transition-all bg-white duration-300 ease-in-out ${isOpen
               ? 'max-h-96 opacity-100 visible'
-              : 'max-h-0 opacity-0 invisible'
+              : 'max-h-0 opacity-0 invisible z-10'
             } overflow-hidden`}
         >
-          <div className="py-4 space-y-3 border-t border-gray-100">
+          <div className="py-4 space-y-3 border-t border-gray-100 bg-white">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="block text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200 py-2 text-base"
+                className="block text-gray-700 hover:text-secondary font-medium transition-colors duration-200 py-2 text-base"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 mt-4">
+            <div className='w-full p-4 mt-4'>
+                <Button variant='border' className='w-full' onClick={() => setOpen(true)}>
               Get Started Free
-            </button>
+            </Button>
+            </div>
+            
           </div>
         </div>
       </div>
     </nav>
+
+     <AnimatePresence>
+                {open && <FormModal onClose={() => setOpen(false)} />}
+            </AnimatePresence>
+    </>
+    
   );
 };
 

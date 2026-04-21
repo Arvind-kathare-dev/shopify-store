@@ -4,7 +4,7 @@ import React from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "secondary" | "outline" | "ghost" | "border" | "whiteBorder";
 type Size = "sm" | "md" | "lg";
 
 interface ButtonProps {
@@ -48,11 +48,20 @@ export default function Button({
         variant === "primary" &&
           "bg-gradient-to-r from-[#8E6CEF] to-[#46396A] text-white hover:opacity-90 shadow-md",
 
+           variant === "secondary" &&
+          "bg-secondary text-white hover:opacity-90 shadow-md",
+
         variant === "outline" &&
           "border border-[#CFC9E3] text-[#46396A] bg-white hover:bg-[#F5F3F9]",
 
         variant === "ghost" &&
           "bg-[#F5F3F9] text-[#46396A] hover:bg-[#E9E5F4]",
+
+            variant === "border" &&
+          "bg-transparent text-secondary border border-secondary hover:opacity-80",
+
+            variant === "whiteBorder" &&
+          "bg-transparent text-white border border-white hover:opacity-80",
 
         // States
         fullWidth && "w-full",

@@ -1,8 +1,7 @@
-// sections/Comparison.tsx
 "use client";
 
-import Container from "@/components/Container";
-import { Check, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Check, X, ArrowDown } from "lucide-react";
 
 const features = [
   "True Native App",
@@ -14,82 +13,133 @@ const features = [
 
 export default function Comparison() {
   return (
-    <section className="py-24 bg-[#F7F7FB]">
-      <Container>
-        
-        {/* Header */}
+    <section className=" py-20 px-4  xl:px-12">
+      <div className="w-full mx-auto">
+
+        {/* HEADER */}
         <div className="text-center mb-14">
-          <p className="text-xs tracking-widest text-gray-400 uppercase mb-2">
-            How we compare
+          <p className="text-xs tracking-[0.2em] uppercase text-gray-400">
+            HOW WE COMPARE
           </p>
 
-          <h2 className="text-2xl md:text-3xl font-semibold">
+          <h2 className="text-2xl sm:text-3xl font-bold mt-2">
             Shopifystore vs{" "}
-            <span className="text-purple-500">everything else</span>
+            <span className="text-[#7B61FF]">everything else</span>
           </h2>
         </div>
 
-        {/* Layout */}
-        <div className="grid lg:grid-cols-4 gap-6 items-stretch">
+        {/* GRID */}
+        <div className="w-full flex flex-col items-center xl:flex-row gap-6 lg:items-start">
 
-          {/* LEFT FEATURE LIST */}
-          <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-2xl p-6 flex flex-col justify-center">
-            <p className="text-sm font-medium mb-6">Features Details</p>
+          {/* LEFT SIDE */}
+          <div className="w-full flex flex-col gap-6 mt-auto">
 
-            <div className="space-y-5 text-sm">
-              {features.map((f, i) => (
-                <p key={i}>{f}</p>
-              ))}
+            {/* CTA */}
+            <div className="flex items-center gap-2 text-sm">
+              <div className="flex gap-2 items-center mx-6">
+                <div className="w-6 h-6 flex items-center justify-center rounded-full border border-[#7B61FF] text-[#7B61FF]">
+                  <ArrowDown size={14} />
+                </div>
+                <div className="flex flex-col">
+                  <span className=" text-[10px] font-medium text-secondary">Get Started</span>
+                  <h3 className="font-base font-semibold">Features Details</h3>
+                </div>
+              </div>
+
+
+            </div>
+
+            {/* FEATURE CARD */}
+            <div className="rounded-[25px] w-full bg-primary-card-gradient text-white px-6 md:pr-[87px] md:pl-[40px] py-10">
+
+              <div className="flex flex-col gap-6  md:gap-[37px] text-[14px]">
+                {features.map((f, i) => (
+                  <p key={i} className="font-semibold text-base leading-none tracking-normal">{f}</p>
+                ))}
+              </div>
             </div>
           </div>
+          {/* Right Side */}
+          <div className="w-full   flex-col flex gap-3 sm:flex-row xl:flex-row md:gap-[15px]">
+            {/* COLUMNS */}
+            {[
+              {
+                title: "WEBVIEW BUILDERS",
+                items: [
+                  <Check className=" mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                  <span className="text-sm text-gray-500 text-center">2–4 weeks</span>,
+                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                ],
+              },
+              {
+                title: "CUSTOM DEV",
+                items: [
+                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                  <X className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                  <span className="text-sm text-gray-500 text-center">Custom build</span>,
+                  <span className="text-sm text-gray-500 text-center">3–6 months</span>,
+                  <X className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
+                ],
+              },
+              {
+                title: "SHOPIFYSTORE",
+                highlight: true,
+                items: [
+                  <Check className="mx-auto p-1 bg-secondary-100 rounded-full text-white" size={18} />,
+                  <div className="text-sm text-secondary-100 flex items-center justify-center gap-2 ">
+                    <Check className=" p-1 bg-secondary-100 rounded-full text-white" size={18} />
+                    <span>14 features</span>
+                  </div>,
+                  <div className="text-sm text-secondary-100 flex items-center justify-center gap-2 ">
+                    <Check className=" p-1 bg-secondary-100 rounded-full text-white" size={18} />
+                    <span>Included</span>
+                  </div>,
+                  <span className="text-sm text-secondary-100 text-center">7–14 days</span>,
+                  <Check className="mx-auto p-1 bg-secondary-100 rounded-full text-white" size={18} />,
+                ],
+              },
+            ].map((col, i) => (
+              <div
+                key={i}
+                className={`
+                w-full
+                lg:w-[295px]
+                rounded-[25px]
+                border border-secondary-light
+                p-4
+                md:px-8 md:py-10
+                h-fit
+                flex flex-col
+                justify-start
+                gap-8
+                text-center
+                ${col.highlight
+                    ? "bg-white border-secondary-light shadow-[0_10px_30px_rgba(123,97,255,0.08)]"
+                    : "bg-white"
+                  }
+              `}
+              >
+                <h3
+                  className={`font-semibold text-[16px] leading-none tracking-normal text-center uppercase ${col.highlight ? "text-secondary-100" : "text-neutral"
+                    }`}
+                >
+                  {col.title}
+                </h3>
 
-          {/* WEBVIEW BUILDERS */}
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-            <h3 className="text-xs font-medium text-gray-400 mb-6 uppercase">
-              Webview Builders
-            </h3>
-
-            <div className="space-y-5">
-              <Check className="mx-auto text-gray-400" size={18} />
-              <Check className="mx-auto text-gray-400" size={18} />
-              <Check className="mx-auto text-gray-400" size={18} />
-              <p className="text-sm text-gray-500">2–4 weeks</p>
-              <Check className="mx-auto text-gray-400" size={18} />
-            </div>
+                <div className="flex flex-col justify-between flex-1 gap-8">
+                  {col.items.map((item, idx) => (
+                    <div key={idx} className="text-customGray-200">{item}</div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* CUSTOM DEV */}
-          <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
-            <h3 className="text-xs font-medium text-gray-400 mb-6 uppercase">
-              Custom Dev
-            </h3>
-
-            <div className="space-y-5">
-              <Check className="mx-auto text-gray-400" size={18} />
-              <X className="mx-auto text-gray-300" size={18} />
-              <p className="text-sm text-gray-500">Custom build</p>
-              <p className="text-sm text-gray-500">3–6 months</p>
-              <X className="mx-auto text-gray-300" size={18} />
-            </div>
-          </div>
-
-          {/* SHOPIFYSTORE (Highlighted) */}
-          <div className="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100">
-            <h3 className="text-xs font-medium text-purple-500 mb-6 uppercase">
-              Shopifystore
-            </h3>
-
-            <div className="space-y-5">
-              <Check className="mx-auto text-purple-500" size={18} />
-              <p className="text-sm text-purple-500">14 features</p>
-              <p className="text-sm text-purple-500">Included</p>
-              <p className="text-sm text-purple-500">7–14 days</p>
-              <Check className="mx-auto text-purple-500" size={18} />
-            </div>
-          </div>
 
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
