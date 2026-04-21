@@ -3,13 +3,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Phone, ShieldCheck, Check, CheckCircle, ArrowRight, ArrowLeft } from "lucide-react";
+import { Lock, Phone, Check, ArrowRight, ArrowLeft } from "lucide-react";
 import { CustomInput } from "@/components/ui/CustomInput";
 import { StepIndicator } from "@/components/StepIndicator";
 import { slideVariants } from "@/lib/motion";
 import { ACHIEVE_OPTIONS, FEATURES_OPTIONS, LAUNCH_OPTIONS, REVENUE_OPTIONS, SELL_OPTIONS } from "@/constants/multiStepData";
 import { CustomSelect } from "@/components/ui/CustomSelect";
-import { formSchema } from "@/lib/validation";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface FormData {
@@ -75,25 +74,7 @@ const [loading, setLoading] = useState(false);
   });
 };
 
-  const validateStep = () => {
-  const result = formSchema.safeParse(form);
-
-  if (result.success) {
-    setErrors({});
-    return true;
-  }
-
-  const fieldErrors: Record<string, string> = {};
-
-  Object.entries(result.error.flatten().fieldErrors).forEach(
-    ([key, value]) => {
-      if (value?.[0]) fieldErrors[key] = value[0];
-    }
-  );
-
-  setErrors(fieldErrors);
-  return false;
-};
+ 
 
   // const next = () => {
   //   if (!canNext()) return;
@@ -145,7 +126,7 @@ const [loading, setLoading] = useState(false);
   ];
 
   return (
-    <div className="w-full p-6 lg:py-[90px] lg:px-[73px] bg-primary  flex justify-center items-center">
+    <div id="form" className="w-full scroll-mt-20 p-6 sm:px-8 sm:py-8  lg:py-[90px] lg:px-[73px] bg-primary  flex justify-center items-center">
      {/* Modal shell */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 12 }}

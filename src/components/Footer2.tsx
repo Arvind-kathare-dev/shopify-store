@@ -1,51 +1,70 @@
-import { ArrowRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import Link from "next/link";
 
 export function Footer2() {
   return (
-    <footer className="bg-background py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div>
-            <div className="text-[22px] font-bold tracking-tight text-foreground">
+    <footer className="bg-background py-10 sm:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* TOP SECTION */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          {/* BRAND */}
+          <div className="space-y-2 text-center sm:text-left">
+            <h2 className="text-lg sm:text-xl font-bold text-foreground">
               Shopify<span className="text-black">store</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral">
+             We build native mobile apps with built-in CRO
+            </p>
+          </div>
+
+          {/* POLICY */}
+          <div className="text-center sm:text-left">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground">
+              Privacy Policy
+            </h3>
+            <ul className="mt-3 space-y-2 text-sm text-neutral">
+              <li>
+                <Link href="#" className="hover:text-foreground transition">
+                  Terms & Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* HELP */}
+          <div className="text-center sm:text-left">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground">
+              Help
+            </h3>
+            <ul className="mt-3 space-y-2 text-sm text-neutral">
+              <li>
+                <Link href="#" className="hover:text-foreground transition">
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-foreground">
+              Contact
+            </h3>
+            <div className="flex items-center gap-2 text-sm text-neutral">
+              <Phone size={14} className="text-secondary" />
+              <span>+1 (555) 027-128</span>
             </div>
-            <p className="mt-2 text-[13px] text-neutral">High-converting mobile apps. CRO built-in.</p>
           </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-foreground">Privacy Policy</div>
-            <ul className="mt-3 space-y-2 text-sm ">
-              <li><Link href="#" className="hover:text-foreground">Terms &amp; Conditions</Link></li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-foreground">Help</div>
-            <ul className="mt-3 space-y-2 text-sm ">
-              <li><Link href="#" className="hover:text-foreground">Blog</Link></li>
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-foreground">Enter your email</div>
-            <form className="mt-3 flex items-center gap-2 rounded-full border border-border p-1.5">
-              <input
-                type="email"
-                placeholder="you@store.com"
-                className="min-w-0 flex-1 bg-transparent px-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center gap-1 rounded-full bg-secondary px-4 py-3 text-xs font-semibold text-white"
-              >
-                Join Community <ArrowRight className="h-3 w-3" />
-              </button>
-            </form>
-          </div>
+
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <div>© 2026 Shopifystore. All rights reserved.</div>
-          <div className="flex items-center gap-2"> <Phone size={15} className="text-secondary"/> +1 (555) 027-128</div>
+        {/* BOTTOM BAR */}
+        <div className="mt-10 pt-6 border-t border-border flex items-center flex-col sm:flex-row  justify-center gap-3 text-xs text-muted-foreground text-center sm:text-left">
+          <p>© 2026 Shopifystore. All rights reserved.</p>
         </div>
+
       </div>
     </footer>
   );

@@ -26,7 +26,8 @@ export default function HeroSection() {
                 <section className="flex flex-col items-center gap-8 pt-6  text-center overflow-hidden">
                     {/* Headline */}
                     <div className="flex flex-col items-center gap-2 lg:gap-[21px]">
-                        <div>
+                        <div className="flex items-center flex-col gap-1">
+<div>
                              <h1 className="text-2xl md:text-[40px] font-bold text-gray-900 leading-tight max-w-2xl">
                             Your Shopify Store deserves
                         </h1>
@@ -37,11 +38,13 @@ export default function HeroSection() {
                         
 
                         {/* Subheading */}
-                        <p className="text-neutral text-[15px] w-auto max-w-lg ">
+                        <p className="text-neutral text-[15px] w-auto max-w-lg p-2">
                             We build native mobile apps with built-in CRO that turn your mobile
                             traffic into revenue — push notifications, personalization, and 14
                             conversion features included.
                         </p>
+                        </div>
+                        
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col md:flex-row items-center gap-4">

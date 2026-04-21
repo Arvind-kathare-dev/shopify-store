@@ -1,142 +1,139 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Phone, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import Link from "next/link";
+
+const socials = [
+  {
+    href: "#",
+    label: "Instagram",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
+        <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 
+        0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5.5A4.5 4.5 
+        0 1112 17a4.5 4.5 0 010-9.5zm5.25-.75a1.25 1.25 
+        0 11-2.5 0 1.25 1.25 0 012.5 0zM12 
+        9a3 3 0 100 6 3 3 0 000-6z"/>
+      </svg>
+    ),
+  },
+  {
+    href: "#",
+    label: "Facebook",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
+        <path d="M22 12a10 10 0 10-11.5 9.87v-6.99H8.08V12h2.42V9.8c0-2.39 
+        1.43-3.71 3.62-3.71 1.05 0 2.15.19 2.15.19v2.37h-1.21c-1.2 
+        0-1.57.74-1.57 1.5V12h2.67l-.43 
+        2.88h-2.24v6.99A10 10 0 0022 12z"/>
+      </svg>
+    ),
+  },
+  {
+    href: "#",
+    label: "LinkedIn",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 
+        6S0 4.88 0 3.5 1.12 1 2.5 
+        1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 
+        0H12v2.3h.06c.62-1.17 2.14-2.4 
+        4.41-2.4 4.72 0 5.6 3.1 
+        5.6 7.13V24h-5v-7.6c0-1.8-.03-4.1-2.5-4.1-2.5 
+        0-2.88 1.95-2.88 3.97V24h-5V8z"/>
+      </svg>
+    ),
+  },
+  {
+    href: "#",
+    label: "X",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
+        <path d="M18.244 2H21l-6.56 7.5L22 
+        22h-6.828l-5.35-7.01L3.5 
+        22H1l7.02-8.02L2 
+        2h6.9l4.85 6.37L18.244 2z"/>
+      </svg>
+    ),
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-white">
-      <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-10 lg:py-12">
-        {/* TOP SECTION */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xl:grid-cols-12 gap-8 lg:gap-10 xl:gap-12">
-          
-          {/* BRAND */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-col gap-2 xl:col-span-4"
-          >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Shopifystore
-            </h3>
-            <p className="text-sm text-gray-600 leading-relaxed max-w-xs">
-              We build native mobile apps with built-in CRO
+    <footer className="bg-gradient-to-b from-[#050A14] to-[#02060F] text-white">
+
+      {/* CONTAINER */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-20 py-14">
+
+        {/* TOP GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+
+          {/* LEFT - BRAND */}
+          <div className="space-y-4 max-w-[320px]">
+            <h2 className="text-[28px] font-bold text-secondary">
+             Shopifystore
+            </h2>
+
+            <p className="text-[14px] leading-[24px] text-[#A3AED0]">
+              Build faster, launch smarter, and create a better
+              experience with a product designed for modern growth.
             </p>
-          </motion.div>
+          </div>
 
-          {/* LINKS 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="flex flex-col gap-4 xl:col-span-2"
-          >
-            <a
-              href="#"
-              className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
-            >
-              Terms & Conditions
-            </a>
-          </motion.div>
+          {/* CENTER - LINKS */}
+          <div className="space-y-4">
+            <h3 className="text-[16px] font-semibold relative inline-block">
+              Quick Links
+              <span className="absolute left-0 -bottom-1 w-8 h-[2px] bg-secondary" />
+            </h3>
 
-          {/* LINKS 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15, duration: 0.4 }}
-            className="flex flex-col gap-4 xl:col-span-2"
-          >
-            <a
-              href="#"
-              className="text-sm  text-gray-600 hover:text-gray-900 transition-colors duration-200"
-            >
-              Help
-            </a>
-            <a
-              href="#"
-              className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
-            >
-              Blog
-            </a>
-          </motion.div>
+            <ul className="space-y-3 text-[14px] text-[#A3AED0]">
+              <li><Link href="#features" className="hover:text-white transition">Features</Link></li>
+              <li><Link href="#demo" className="hover:text-white transition">Demo</Link></li>
+              <li><Link href="#form" className="hover:text-white transition">Get Started for Free</Link></li>
+              <li><Link href="#faq" className="hover:text-white transition">FAQ</Link></li>
+            </ul>
+          </div>
 
-          {/* EMAIL SUBSCRIPTION - FULLY RESPONSIVE */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="flex flex-col gap-3 sm:col-span-4 lg:col-span-4 max-w-[310px]"
-          >
-            <label className="text-sm text-gray-600 font-medium">
-              Enter your Email<span className="text-red-500">*</span>
-            </label>
+          {/* RIGHT - CONTACT */}
+          <div className="space-y-4">
+            <h3 className="text-[16px] font-semibold relative inline-block">
+              Get in Touch
+              <span className="absolute left-0 -bottom-1 w-8 h-[2px] bg-secondary" />
+            </h3>
 
-            {/* Desktop/Tablet: Inline layout */}
-            <div className="hidden sm:flex items-center bg-gray-100 rounded-full overflow-hidden">
-              <input
-                type="email"
-                placeholder="example@gmail.com"
-                className="bg-transparent outline-none text-sm flex-1 min-w-0 placeholder:text-gray-400 px-4 py-3"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-purple-600 hover:bg-purple-700 flex items-center gap-2 text-white text-sm font-medium px-4 lg:px-5 py-3 rounded-full transition-colors duration-200 whitespace-nowrap flex-shrink-0"
-              >
-                <span className="hidden md:inline">Join Community</span>
-                <span className="md:hidden">Join</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
+            <div className="space-y-3 text-[14px] text-[#A3AED0]">
+              <p>Ahmedabad, Gujarat, India</p>
+              <p>hello@shopifystore.com</p>
+              <p>+91 99999 99999</p>
             </div>
 
-            {/* Mobile: Stacked layout */}
-            <div className="flex sm:hidden flex-col gap-2">
-              <input
-                type="email"
-                placeholder="example@gmail.com"
-                className="bg-gray-100 outline-none text-sm w-full placeholder:text-gray-400 px-4 py-3 rounded-full"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-purple-600 hover:bg-purple-700 flex items-center justify-center gap-2 text-white text-sm font-medium px-4 py-3 rounded-full transition-colors duration-200 w-full"
-              >
-                Join Community
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
+            {/* SOCIAL ICONS */}
+            <div className="flex gap-3 pt-2">
+              {socials.map((s, i) => (
+                <Link
+                  key={i}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="w-10 h-10 rounded-full border border-[#1F2A44] flex items-center justify-center 
+                             text-[#A3AED0] hover:text-white hover:border-secondary 
+                             hover:bg-[#0F172A] transition-all duration-200"
+                >
+                  {s.icon}
+                </Link>
+              ))}
             </div>
-          </motion.div>
+          </div>
+
         </div>
 
-        {/* BOTTOM BAR */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.4 }}
-          className="mt-10 lg:mt-12 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6"
-        >
-          <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-            © 2026 Shopifystore. All rights reserved.
-          </p>
+        {/* DIVIDER */}
+        <div className="mt-12 border-t border-[#1F2A44]" />
 
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-            <Phone className="w-4 h-4" />
-            <span>+1 555 321 325</span>
-          </div>
-        </motion.div>
+        {/* BOTTOM */}
+        <div className="mt-6 text-center text-[13px] text-[#6B7280]">
+          © 2026 Shopifystore. All rights reserved.
+        </div>
+
       </div>
     </footer>
   );

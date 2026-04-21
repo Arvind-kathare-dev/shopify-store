@@ -13,8 +13,8 @@ const features = [
 
 export default function Comparison() {
   return (
-    <section className="py-8 lg:py-20 px-4  lg:px-12">
-      <div className="w-full max-w-7xl mx-auto">
+    <section className="py-8 lg:py-20 px-8  lg:px-12">
+      <div className="w-full max-w-[1440px] mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-14">
@@ -60,7 +60,7 @@ export default function Comparison() {
             </div>
           </div>
           {/* Right Side */}
-          <div className="w-full   flex-col flex gap-3 sm:flex-row xl:flex-row md:gap-[15px]">
+          <div className="w-full   flex-col flex gap-4 lg:gap-3 sm:flex-row xl:flex-row md:gap-[15px]">
             {/* COLUMNS */}
             {[
               {
@@ -108,12 +108,12 @@ export default function Comparison() {
                 lg:w-[295px]
                 rounded-[25px]
                 border border-secondary-light
-                p-4
+                px-6 py-8
                 md:px-8 md:py-10
                 h-fit
                 flex flex-col
-                justify-start
-                gap-8
+                justify-start gap-6
+                mg:gap-8
                 text-center
                 ${col.highlight
                     ? "bg-white border-secondary-light shadow-[0_10px_30px_rgba(123,97,255,0.08)]"
