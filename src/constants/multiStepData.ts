@@ -1,4 +1,4 @@
-import { SelectOption } from "./types";
+import { SelectOption } from "@/types/types";
 
 /* ───────── SELL ───────── */
 export const SELL_OPTIONS: SelectOption[] = [
