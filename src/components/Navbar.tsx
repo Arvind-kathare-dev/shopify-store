@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <>
-    <nav className='w-full'>
+    <nav className='fixed top-0 left-0 w-full z-50 bg-white transition-all duration-300 px-4 '>
       <div className="w-full">
         <div className="flex w-full justify-between items-center h-16 md:h-20">
           {/* Logo */}
