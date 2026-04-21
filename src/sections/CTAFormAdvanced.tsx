@@ -145,14 +145,14 @@ const [loading, setLoading] = useState(false);
   ];
 
   return (
-    <div className="w-full px-6 py-4 md:py-[90px] md:px-[73px] bg-primary  flex justify-center items-center">
+    <div className="w-full p-6 lg:py-[90px] lg:px-[73px] bg-primary  flex justify-center items-center">
      {/* Modal shell */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 12 }}
         transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-10 w-full justify-between  bg-primary  overflow-hidden  flex"
+        className="relative max-w-[1440px] z-10 w-full justify-between  bg-primary  overflow-hidden  flex"
         style={{ minHeight: 420 }}
       >
         {/* ── Left panel ── */}

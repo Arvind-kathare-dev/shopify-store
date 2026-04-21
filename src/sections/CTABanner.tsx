@@ -5,13 +5,14 @@ import Button from "@/components/Button";
 import { AnimatePresence } from "framer-motion";
 import { FormModal } from "@/components/model/FormModal";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function CTABanner() {
    const [open, setOpen] = useState(false);
   return (
-    <>
-     <section className="w-full bg-white py-10 px-4 md:px-10">
-      <div className="relative  rounded-[48px] bg-primary-gradient">
+    <div className="w-full flex justify-center items-center">
+     <section className="w-full max-w-[1440px] py-8  lg:py-10 px-4 md:px-10">
+      <div className="relative rounded-2xl  lg:rounded-[48px] bg-primary-gradient">
 
         {/* Watermark */}
         <span className="absolute left-0 md:left-10 top-1/2 -translate-y-1/2 text-[clamp(120px,18vw,260px)] font-bold text-white/5 pointer-events-none select-none">
@@ -37,10 +38,12 @@ export default function CTABanner() {
               <Button variant="outline" onClick={() => setOpen(true)}>
                 Get Started Free
               </Button>
-
-              <Button variant="whiteBorder">
+<Link href={"#demo"}>
+<Button variant="whiteBorder">
                 Watch Demo
               </Button>
+</Link>
+              
             </div>
 
             {/* Trust Text */}
@@ -52,11 +55,11 @@ export default function CTABanner() {
           {/* RIGHT IMAGE */}
           <div className="absolute -top-[108px] right-0 w-full md:w-[380px]  justify-center md:justify-end md:flex hidden">
             <Image
-              src="/images/bannerImg.png"
+              src="/images/bannerImg2.png"
               alt="Mobile preview"
               width={350}
               height={280}
-              className="object-contain drop-shadow-2xl translate-y-6 md:translate-y-10"
+              className="object-contain translate-y-6 md:translate-y-10"
               priority
             />
           </div>
@@ -66,7 +69,7 @@ export default function CTABanner() {
      <AnimatePresence>
                 {open && <FormModal onClose={() => setOpen(false)} />}
             </AnimatePresence>
-    </>
+    </div>
    
   );
 }

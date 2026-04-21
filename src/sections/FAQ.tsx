@@ -36,8 +36,8 @@ export default function FAQ() {
   };
 
   return (
-    <section className="md:px-[109px] md:pt-[90px] md:pb-[65px]  bg-white">
-      <div className="mx-auto px-6 flex flex-col gap-[51px]">
+    <section id="faq" className=" p-4 md:px-[109px] md:pt-[90px] md:pb-[65px] scroll-mt-20  bg-white">
+      <div className="max-w-[1440px] mx-auto px-6 flex flex-col gap-[51px]">
 
         {/* HEADER */}
         <div className="text-center flex flex-col gap-[7px]">

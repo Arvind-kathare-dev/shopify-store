@@ -35,7 +35,7 @@ const fadeUp = {
 export default function NumbersAdvanced() {
   return (
     <section className="py-24 bg-gradient-to-b from-white to-[#F7F7FB]">
-      <div className="w-full flex flex-col gap-[45px] mx-auto px-6 lg:px-16">
+      <div className="w-full max-w-[1440px] flex flex-col gap-[45px] mx-auto px-6 lg:px-16">
 
         {/* HEADER */}
         <div className="flex flex-col gap-[11px]">

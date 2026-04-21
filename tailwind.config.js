@@ -64,8 +64,7 @@ module.exports = {
           "linear-gradient(180deg, #EBE8F4 0%, #F5F3F9 100%)",
       },
 
-     
-
+  
     },
   },
   plugins: [],

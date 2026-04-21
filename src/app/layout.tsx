@@ -31,25 +31,25 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
 
           {/* NAVBAR */}
-          <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
+          {/* <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
             <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center">
               <Navbar />
             </div>
-          </header>
+          </header> */}
 
           {/* MAIN */}
           <main className="flex-1 w-full">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-6">
+            {/* <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 py-6"> */}
               {children}
-            </div>
+            {/* </div> */}
           </main>
 
           {/* FOOTER */}
-          <footer className="w-full border-t border-gray-200">
+          {/* <footer className="w-full border-t border-gray-200">
             <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10">
               <Footer />
             </div>
-          </footer>
+          </footer> */}
 
         </div>
 

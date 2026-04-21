@@ -10,8 +10,8 @@ export default function VideoSection() {
    const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="bg-white py-16 px-4 sm:px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      <section id="demo" className="bg-white scroll-mt-20 py-8 lg:py-16 px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto  flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
         {/* LEFT CONTENT */}
         <motion.div

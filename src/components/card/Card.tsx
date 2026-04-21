@@ -35,7 +35,7 @@ export const Card = ({
       whileInView="show"
       viewport={{ once: true }}
       className={clsx(
-        "rounded-[30px] pt-[39px] pb-[33] pl-[32px] pr-[60px] bg-white shadow shadow-gradient-gray",
+        " rounded-2xl lg:rounded-[30px] p-6 lg:pt-[39px] lg:pb-[33] lg:pl-[32px] lg:pr-[60px] bg-white shadow  shadow-gradient-gray",
         className
       )}
     >

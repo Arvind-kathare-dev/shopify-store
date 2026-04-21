@@ -52,52 +52,7 @@ export function FormModal({ onClose }: ModalProps) {
   const set = (field: keyof FormData) => (v: string) => setForm((p) => ({ ...p, [field]: v }));
 
 
-  const validateStep = () => {
-  let schema:any;
-
-  if (step === 1) {
-    schema = formSchema.pick({
-      fullName: true,
-      workEmail: true,
-      phone: true,
-    });
-  }
-
-  if (step === 2) {
-    schema = formSchema.pick({
-      storeName: true,
-      storeUrl: true,
-      whatDoYouSell: true,
-    });
-  }
-
-  if (step === 3) {
-    schema = formSchema.pick({
-      achieve: true,
-      launchSoon: true,
-      features: true,
-      monthlyRevenue: true,
-    });
-  }
-
-  const result = schema.safeParse(form);
-
-  if (result.success) {
-    setErrors({});
-    return true;
-  }
-
-  const fieldErrors: Record<string, string> = {};
-
-  Object?.entries(result.error.flatten().fieldErrors).forEach(
-    ([key, value]:any) => {
-      if (value?.[0]) fieldErrors[key] = value[0];
-    }
-  );
-
-  setErrors(fieldErrors);
-  return false;
-};
+ 
 
   const canNext = () => {
     if (step === 1) return form.fullName.trim() && form.workEmail.trim();
@@ -114,8 +69,7 @@ export function FormModal({ onClose }: ModalProps) {
 
 
 const next = async () => {
-  // if (!canNext()) return;
-  if (!validateStep()) return;
+  if (!canNext()) return;
 
   if (step === 3) {
     try {
@@ -175,7 +129,7 @@ const next = async () => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 12 }}
         transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-10 w-full justify-between p-8 max-w-[1240px] overflow-visible  bg-primary rounded-3xl  will-change-transform shadow-2xl flex"
+        className="relative z-10 w-full justify-between p-1.5 lg:p-8 max-w-[1240px] overflow-visible  bg-primary rounded-3xl  will-change-transform shadow-2xl flex"
       >
         <button
   onClick={onClose}
@@ -195,7 +149,7 @@ const next = async () => {
   <X size={18} className="text-red-500" />
 </button>
         {/* ── Left panel ── */}
-        <div className="hidden lg:flex flex-col justify-between  max-w-[341px] max-h-[465px] flex-shrink-0 ">
+        <div className="hidden lg:flex flex-col justify-between w-full  max-w-[341px] max-h-[465px] flex-shrink-0 ">
           <div className="flex flex-col gap-[17px]">
             <p className="text-sm  font-normal tracking-tight  text-primary-light uppercase">
               Free Strategy Call
@@ -268,7 +222,6 @@ const next = async () => {
                         value={form.fullName} 
                         onChange={set("fullName")} 
                         required
-                        error={errors.fullName}
                          />
                         <CustomInput 
                         label="Work Email" 
@@ -277,7 +230,6 @@ const next = async () => {
                         onChange={set("workEmail")} 
                         type="email" 
                         required 
-                        error={errors.workEmail}
                         />
                         <CustomInput 
                         label="Phone (optional)" 
@@ -285,7 +237,6 @@ const next = async () => {
                         value={form.phone} 
                         onChange={set("phone")} 
                         type="tel" 
-                        error={errors.phone}
                         />
                       </motion.div>
                     )}
@@ -302,7 +253,6 @@ const next = async () => {
                         value={form.storeName} 
                         onChange={set("storeName")} 
                         required 
-                        error={errors.storeName}
                         />
                         <CustomInput 
                         label="Store URL" 
@@ -310,7 +260,6 @@ const next = async () => {
                         value={form.storeUrl} 
                         onChange={set("storeUrl")} 
                         required
-                        error={errors.storeUrl}
                          />
                         <CustomSelect 
                         label="What do you Sell?" 
@@ -318,7 +267,6 @@ const next = async () => {
                         value={form.whatDoYouSell} 
                         onChange={set("whatDoYouSell")} 
                         required 
-                        error={errors.whatDoYouSell}
                         />
                       </motion.div>
                     )}
@@ -334,7 +282,6 @@ const next = async () => {
                         options={ACHIEVE_OPTIONS} value={form.achieve} 
                         onChange={set("achieve")} 
                         required 
-                        error={errors.achieve}
                         />
                         <CustomSelect 
                         label="How soon do you want to launch?" 
@@ -342,14 +289,12 @@ const next = async () => {
                         value={form.launchSoon} 
                         onChange={set("launchSoon")} 
                         required
-                        error={errors.launchSoon}
                         />
                         <CustomSelect 
                         label="What features are most important to you?" 
                         options={FEATURES_OPTIONS} 
                         value={form.features} 
                         onChange={set("features")}
-                        error={errors.features}
                          required
                          />
                         <CustomSelect 
@@ -357,7 +302,6 @@ const next = async () => {
                         options={REVENUE_OPTIONS} 
                         value={form.monthlyRevenue} 
                         onChange={set("monthlyRevenue")}
-                        error={errors.monthlyRevenue}
                          required
                          />
                       </motion.div>
@@ -374,20 +318,7 @@ const next = async () => {
                     </button>
                   ) : <div />}
 
-                  {/* <motion.button
-                    whileHover={{ scale: canNext() ? 1.03 : 1 }}
-                    whileTap={{ scale: canNext() ? 0.97 : 1 }}
-                    onClick={next}
-                    disabled={!canNext()}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
-                      canNext()
-                        ? "bg-secondary hover:opacity-80 text-white shadow-lg shadow-purple-200"
-                        : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    }`}
-                  >
-                    Continue
-                    <ArrowRight size={20}/>
-                  </motion.button> */}
+                
 
                    <motion.button
   whileHover={{ scale: canNext() && !loading ? 1.03 : 1 }}

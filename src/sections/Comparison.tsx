@@ -13,8 +13,8 @@ const features = [
 
 export default function Comparison() {
   return (
-    <section className=" py-20 px-4  xl:px-12">
-      <div className="w-full mx-auto">
+    <section className="py-8 lg:py-20 px-4  lg:px-12">
+      <div className="w-full max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-14">

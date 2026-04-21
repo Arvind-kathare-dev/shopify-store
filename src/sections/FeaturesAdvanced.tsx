@@ -15,8 +15,8 @@ const fade = {
 
 export default function FeaturesAdvanced() {
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+    <section id="features" className="bg-white scroll-mt-20 py-16 px-4 sm:px-6 lg:px-12">
+      <div className="max-w-[1440px] mx-auto flex flex-col gap-12">
         {/* HEADER */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <p className="text-xs tracking-widest uppercase text-neutral">

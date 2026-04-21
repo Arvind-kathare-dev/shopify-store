@@ -5,6 +5,7 @@ import { FormModal } from "@/components/model/FormModal";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const stats = [
@@ -20,20 +21,23 @@ export default function HeroSection() {
     const [open, setOpen] = useState(false);
     return (
         <>
-            <div className=" font-sans mt-[103px]">
+            <div className="bg-white">
                 {/* Hero Section */}
-                <section className="flex flex-col items-center gap-8   text-center overflow-hidden">
+                <section className="flex flex-col items-center gap-8 pt-6  text-center overflow-hidden">
                     {/* Headline */}
-                    <div className="flex flex-col items-center gap-[21px]">
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight max-w-2xl">
+                    <div className="flex flex-col items-center gap-2 lg:gap-[21px]">
+                        <div>
+                             <h1 className="text-2xl md:text-[40px] font-bold text-gray-900 leading-tight max-w-2xl">
                             Your Shopify Store deserves
                         </h1>
-                        <h2 className="text-4xl md:text-5xl font-bold text-neutral-muted leading-tight">
+                        <h2 className="text-2xl md:text-[40px] font-bold text-neutral-muted leading-tight">
                             a High-Converting Mobile App
                         </h2>
+                        </div>
+                        
 
                         {/* Subheading */}
-                        <p className="text-neutral text-base max-w-lg ">
+                        <p className="text-neutral text-[15px] w-auto max-w-lg ">
                             We build native mobile apps with built-in CRO that turn your mobile
                             traffic into revenue — push notifications, personalization, and 14
                             conversion features included.
@@ -45,9 +49,12 @@ export default function HeroSection() {
                             <Button variant="secondary" onClick={() => setOpen(true)} rightIcon={<ArrowRight size={20} />}>
                                 Get Started Free
                             </Button>
+                            <Link href="#demo">
                             <Button variant="outline" rightIcon={<Image src={"/icons/video.svg"} alt="icon" width={20} height={20} />}>
                                 Watch Demo
                             </Button>
+                            </Link>
+                            
                         </div>
                     </div>
 
@@ -84,7 +91,7 @@ export default function HeroSection() {
 
                         {/* Phone Mockup */}
                         <div className="relative z-0 mx-auto w-[437.6px] md:p-0 px-6">
-                            <Image src="/images/mobileImg1.png" alt="img" width={450} height={500} />
+                            <Image src="/images/mobileImg.png" alt="img" width={450} height={500} />
                         </div>
 
                         {/* Star rating card */}

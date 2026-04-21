@@ -86,7 +86,7 @@ useEffect(() => {
 
   return (
     <section className="lg:py-[75px] lg:px-[90px] px-4 py-10 bg-background-subtle">
-      <div className="w-full mx-auto ">
+      <div className="w- max-w-[1440px] mx-auto ">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-12">
