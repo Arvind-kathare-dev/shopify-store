@@ -7,6 +7,7 @@ module.exports = {
     inter: ["var(--font-inter)", "sans-serif"],
   },
       colors: {
+        foreground: "#000000",
         primary: {
           DEFAULT: "#46396A",
           light: "#968CB1",
@@ -33,6 +34,12 @@ module.exports = {
           faq: "#F7F5FA",
         },
 
+        muted: {
+          DEFAULT: "#F1F5F9",
+          foreground: "#64748B",
+        },
+
+        border: "rgba(0, 0, 0, 0.1)",
         accent: "#63C194",
 
         neutral: {
@@ -41,6 +48,7 @@ module.exports = {
         },
       },
       boxShadow: {
+        soft: "0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
         softPurple: "0 10px 30px rgba(160, 140, 217, 0.05)",
       },
 
@@ -62,9 +70,14 @@ module.exports = {
 
            "gradient-card2":
           "linear-gradient(180deg, #EBE8F4 0%, #F5F3F9 100%)",
+
+          "gradient-border":
+          "linear-gradient(180deg, rgba(160, 140, 217, 0.46) 0%, #FFFFFF 100%)",
       },
 
-  
+      screens: {
+        'short': { 'raw': '(max-height: 750px)' },
+      },
     },
   },
   plugins: [],

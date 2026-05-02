@@ -1,4 +1,3 @@
-// sections/Testimonials.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -52,153 +51,167 @@ const testimonials: Testimonial[] = [
   },
 ];
 
+const cardVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 100 : -100,
+    opacity: 0,
+    scale: 0.95,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 100 : -100,
+    opacity: 0,
+    scale: 0.95,
+    transition: {
+      duration: 0.3,
+      ease: "easeIn",
+    },
+  }),
+};
+
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [direction, setDirection] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
 
-useEffect(() => {
-  const update = () => {
-    if (window.innerWidth < 768) setVisibleCount(1);
-    else if (window.innerWidth < 1024) setVisibleCount(2);
-    else setVisibleCount(3);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setVisibleCount(1);
+      else if (window.innerWidth < 1024) setVisibleCount(2);
+      else setVisibleCount(3);
+    };
 
-  update();
-  window.addEventListener("resize", update);
-  return () => window.removeEventListener("resize", update);
-}, []);
-
-  
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const visibleCards = testimonials.slice(index, index + visibleCount);
 
   const handleNext = () => {
     if (index + visibleCount < testimonials.length) {
+      setDirection(1);
       setIndex((prev) => prev + 1);
     }
   };
 
   const handlePrev = () => {
     if (index > 0) {
+      setDirection(-1);
       setIndex((prev) => prev - 1);
     }
   };
 
   return (
-    <section className="lg:py-[75px] lg:px-[90px] px-4 py-10 bg-background-subtle">
-      <div className="w- max-w-[1440px] mx-auto ">
+    <section className="py-16 md:py-24 bg-background-subtle overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-12 lg:px-24">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-12">
-          <div>
-            <p className="font-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 mb-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-center md:text-left space-y-4"
+          >
+            <p className="text-sm font-normal tracking-[0.2em] uppercase text-neutral">
               What merchants say
             </p>
-
-            <h2 className="text-[32px]  font-bold text-gray-900">
-              Real Results from Real Stores
+            <h2 className="text-[20px] md:text-[32px] font-bold text-black leading-tight">
+              Real Results from Real Stores
             </h2>
 
-            <div className="flex items-center gap-3 mt-3">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+              <div className="flex items-center gap-1.5">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <div
+                    key={i}
+                    className="w-6 h-6 flex items-center justify-center rounded-md shadow-sm"
+                    style={{
+                      background: i <= 4 
+                        ? "#7962BC" 
+                        : "linear-gradient(90deg, #7962BC 50%, #D9D9D9 50%)"
+                    }}
+                  >
+                    <Star size={13} className="text-white fill-white" />
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-2 text-[13px] font-normal">
+                <span className="text-black">Trustpilot</span>
+                <span className="text-neutral">Rated 4.5/5.0</span>
+              </div>
+            </div>
+          </motion.div>
 
-      {/* Stars */}
-      <div className="flex items-center gap-[6px]">
-        {[1, 2, 3, 4].map((i) => (
-          <div
-            key={i}
-            className="w-6 h-6 flex items-center justify-center bg-secondary rounded-md"
-          >
-            <Star size={14} className="text-white fill-white" />
-          </div>
-        ))}
-
-        {/* Half Star */}
-        <div className="relative w-6 h-6 rounded-md bg-gray-200 overflow-hidden ">
-          <div className="absolute left-0 top-0 h-full w-1/2 bg-secondary flex items-center justify-center">
-            <Star size={14} className="text-white fill-white" />
-          </div>
-          <div className="flex items-center justify-center h-full">
-            <Star size={14} className="text-gray-400" />
-          </div>
-        </div>
-      </div>
-
-      {/* Text */}
-      <div className="flex items-center gap-2 text-sm">
-        <span className="text-gray-900 font-medium">Trustpilot</span>
-        <span className="text-gray-400">Rated 4.5/5.0</span>
-      </div>
-    </div>
-          </div>
-
-          {/* Arrows */}
-          <div className="w-full md:w-fit flex justify-end  gap-2">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
+          {/* Navigation */}
+          <div className="flex items-center gap-3">
+            <button
               onClick={handlePrev}
               disabled={index === 0}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center 
-                         hover:bg-gray-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center hover:bg-gray-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed group border border-gray-100"
             >
-              <ChevronLeft size={18} />
-            </motion.button>
-
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
+              <ChevronLeft size={20} className="text-gray-600 group-hover:text-secondary transition-colors" />
+            </button>
+            <button
               onClick={handleNext}
               disabled={index + visibleCount >= testimonials.length}
-              className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center 
-                         hover:opacity-80 transition disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-secondary text-white shadow-soft flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed border border-secondary/20"
             >
-              <ChevronRight size={18} />
-            </motion.button>
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="overflow-hidden">
+        {/* Carousel Area */}
+        <div className="relative min-h-[320px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence mode="wait">
-              {visibleCards.map((t, i) => (
+            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+              {visibleCards.map((testimonial, i) => (
                 <motion.div
-                  key={t.name + index + i}
-                  initial={false}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-[22px] px-[26px] py-[34px] shadow-sm hover:shadow-md transition"
+                  key={testimonial.name + index + i}
+                  custom={direction}
+                  // variants={cardVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="bg-white rounded-[32px] p-8 md:p-10 shadow-sm border border-gray-50 flex flex-col justify-between hover:shadow-md transition-shadow"
                 >
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, idx) => (
-                      <span
-                        key={idx}
-                        className={`text-[20px] ${
-                          idx < t.rating
-                            ? "text-yellow-400"
-                            : "text-gray-300"
-                        }`}
-                      >
-                        ★
-                      </span>
-                    ))}
+                  <div className="space-y-6">
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, idx) => (
+                        <Star
+                          key={idx}
+                          size={18}
+                          className={idx < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-xs md:text-sm text-black font-normal leading-relaxed italic">
+                      {testimonial.text}
+                    </p>
                   </div>
 
-                  {/* Text */}
-                  <p className="text-sm font-normal leading-[22px] mb-6">
-                    {t.text}
-                  </p>
-
-                  {/* User */}
-                  <div className="flex items-center gap-3">
-                    <Image src={t.image} alt="dp" width={36} height={36} className="w-9 h-9 rounded-full object-cover bg-gray-200" />
+                  <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-50">
+                    <div className="relative w-[42px] h-[42px] rounded-full overflow-hidden bg-gray-100 ring-2 ring-secondary/10">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
                     <div>
-                      <p className="text-[15px] font-medium">
-                        {t.name}
-                      </p>
-                      <p className="text-[10px] text-neutral">{t.role}</p>
+                      <p className="text-[15px] font-medium text-black">{testimonial.name}</p>
+                      <p className="text-[10px] font-normal text-[#858585] tracking-wider">{testimonial.role}</p>
                     </div>
                   </div>
                 </motion.div>

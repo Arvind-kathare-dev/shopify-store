@@ -1,4 +1,3 @@
-// sections/FAQAdvanced.tsx
 "use client";
 
 import { useState } from "react";
@@ -28,6 +27,19 @@ const faqs = [
   },
 ];
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 10 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  }),
+};
+
 export default function FAQ() {
   const [active, setActive] = useState<number | null>(0);
 
@@ -36,44 +48,52 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className=" p-4 md:px-[109px] md:pt-[90px] md:pb-[65px] scroll-mt-20  bg-white">
+    <section id="faq" className="scroll-mt-[48px] py-8 md:px-[109px] md:pt-[120px] md:pb-[65px] bg-white">
       <div className="max-w-[1440px] mx-auto px-6 flex flex-col gap-[51px]">
 
         {/* HEADER */}
-        <div className="text-center flex flex-col gap-[7px]">
-          <p className="tfont-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center flex flex-col gap-[7px]"
+        >
+          <p className="font-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
             FAQ
           </p>
 
-          <h2 className="font-bold text-2xl leading-none tracking-normal">
+          <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl leading-tight">
             Got <span className="text-secondary">questions?</span>
           </h2>
 
-          <p className="font-normal text-base leading-none tracking-normal text-center text-neutral">
+          <p className="font-normal text-base text-neutral">
             Everything you need to know about launching your Shopify mobile app.
           </p>
-        </div>
+        </motion.div>
 
         {/* ACCORDION */}
-        <div className="space-y-4">
+        <div className="space-y-4 max-w-4xl mx-auto w-full">
           {faqs.map((item, i) => {
             const isOpen = active === i;
 
             return (
-              <div
+              <motion.div
                 key={i}
-                className={`rounded-xl border transition ${
-                  isOpen
-                    ? "border-secondary bg-white"
-                    : "border-transparent bg-background-faq"
-                }`}
+                custom={i}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className={`rounded-xl border transition ${isOpen
+                  ? "border-secondary bg-white shadow-sm"
+                  : "border-transparent bg-background-faq hover:bg-gray-100/50"
+                  }`}
               >
                 {/* HEADER */}
                 <button
                   onClick={() => toggle(i)}
                   className="w-full flex items-center justify-between px-5 py-4 text-left"
                 >
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className={`text-sm md:text-base font-medium transition-colors ${isOpen ? "text-secondary" : "text-gray-900"}`}>
                     {item.q}
                   </span>
 
@@ -81,7 +101,7 @@ export default function FAQ() {
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <ChevronDown size={18} />
+                    <ChevronDown size={18} className={isOpen ? "text-secondary" : "text-gray-500"} />
                   </motion.div>
                 </button>
 
@@ -93,16 +113,16 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden px-5"
                     >
-                      <p className="text-sm text-gray-500 pb-4">
+                      <p className="text-sm md:text-base text-gray-500 pb-4">
                         {item.a}
                       </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
         </div>

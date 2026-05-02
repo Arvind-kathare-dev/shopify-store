@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, CheckCircle } from "lucide-react";
+import { Check } from "lucide-react";
 
 const STEPS = [
   { id: 1, label: "About You" },
@@ -7,16 +7,15 @@ const STEPS = [
   { id: 3, label: "Your Goals" },
 ];
 
-
 export function StepIndicator({ current }: { current: number }) {
   return (
-    <div className="flex items-start gap-0">
+    <div className="flex items-start justify-between w-full">
       {STEPS.map((step, i) => {
         const done = current > step.id;
         const active = current === step.id;
         return (
-          <div key={step.id} className="flex items-start flex-1  w-[382px]">
-            <div className="flex flex-col items-center">
+          <div key={step.id} className={`flex items-start ${i < STEPS.length - 1 ? "flex-1" : "flex-none"}`}>
+            <div className="flex flex-col items-center min-w-[60px] md:min-w-[80px]">
               <motion.div
                 animate={
                   done
@@ -26,7 +25,7 @@ export function StepIndicator({ current }: { current: number }) {
                       : { backgroundColor: "#EBE8F4", scale: 1 }
                 }
                 transition={{ duration: 0.3 }}
-                className="w-[36px] h-[36px] rounded-full  flex items-center justify-center"
+                className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center"
               >
                 <AnimatePresence mode="wait">
                   {done ? (
@@ -38,27 +37,30 @@ export function StepIndicator({ current }: { current: number }) {
                       key="num"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className={`text-xs font-bold ${active ? "text-white" : "text-neutral font-normal"}`}
+                      className={`text-xs font-bold ${active ? "text-white" : "text-neutral"}`}
                     >
                       {step.id}
                     </motion.span>
                   )}
                 </AnimatePresence>
               </motion.div>
-              <span className={`text-xs leading-none tracking-normal mt-1.5 font-medium whitespace-nowrap ${active || done ? "text-secondary" : "text-neutral"}`}>
+              
+              <span className={`text-[10px] md:text-xs mt-2 font-medium text-center leading-tight ${active || done ? "text-secondary" : "text-neutral"}`}>
                 {step.label}
               </span>
             </div>
+
+            {/* Connecting Line */}
             {i < STEPS.length - 1 && (
-              <div className="flex-1 mt-4 mx-2 relative">
+              <div className="flex-1 mt-4 mx-2 relative h-[1px]">
                 {/* Base dashed line */}
-                <div className="absolute inset-0 border-t border-dashed border-neutral-muted" />
+                <div className="absolute inset-0 border-t border-dashed border-gray-200" />
 
                 {/* Animated progress */}
                 <motion.div
-                  className="absolute top-0 left-0 border-t border-dashed border-green-400"
+                  className="absolute top-0 left-0 border-t border-solid border-green-500"
                   animate={{ width: done ? "100%" : "0%" }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.4 }}
                 />
               </div>
             )}

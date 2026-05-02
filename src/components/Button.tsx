@@ -2,12 +2,12 @@
 
 import React from "react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
 type Variant = "primary" | "secondary" | "outline" | "ghost" | "border" | "whiteBorder";
 type Size = "sm" | "md" | "lg";
 
-interface ButtonProps {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
   children: React.ReactNode;
   variant?: Variant;
   size?: Size;
@@ -16,7 +16,6 @@ interface ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   className?: string;
-  onClick?: () => void;
 }
 
 export default function Button({
@@ -28,51 +27,41 @@ export default function Button({
   fullWidth = false,
   disabled = false,
   className,
-  onClick,
+  ...props
 }: ButtonProps) {
+  const variants = {
+    primary: "bg-primary-gradient text-white shadow-lg shadow-primary/20 hover:shadow-primary/40",
+    secondary: "bg-secondary text-white shadow-lg shadow-secondary/20 hover:shadow-secondary/40",
+    outline: "border-2 border-border text-gray-900 bg-white hover:bg-gray-50",
+    ghost: "bg-gray-100 text-gray-900 hover:bg-gray-200",
+    border: "bg-transparent text-secondary border-2 border-secondary hover:bg-secondary hover:text-white",
+    whiteBorder: "bg-transparent text-white border-2 border-white hover:bg-white hover:text-gray-900",
+  };
+
+  const sizes = {
+    sm: "px-5 py-2.5 text-xs",
+    md: "px-7 py-3.5 text-sm",
+    lg: "px-9 py-4.5 text-base",
+  };
+
   return (
     <motion.button
-     whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-      onClick={onClick}
+      whileHover={!disabled ? { scale: 1.02, y: -2 } : {}}
+      whileTap={!disabled ? { scale: 0.98, y: 0 } : {}}
       disabled={disabled}
       className={clsx(
-        "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200",
-        
-        // Sizes
-        size === "sm" && "px-4 py-2 text-xs",
-        size === "md" && "px-6 py-3 text-sm",
-        size === "lg" && "px-8 py-4 text-base",
-
-        // Variants
-        variant === "primary" &&
-          "bg-gradient-to-r from-[#8E6CEF] to-[#46396A] text-white hover:opacity-90 shadow-md",
-
-           variant === "secondary" &&
-          "bg-secondary text-white hover:opacity-90 shadow-md",
-
-        variant === "outline" &&
-          "border border-[#CFC9E3] text-[#46396A] bg-white hover:bg-[#F5F3F9]",
-
-        variant === "ghost" &&
-          "bg-[#F5F3F9] text-[#46396A] hover:bg-[#E9E5F4]",
-
-            variant === "border" &&
-          "bg-transparent text-secondary border border-secondary hover:opacity-80",
-
-            variant === "whiteBorder" &&
-          "bg-transparent text-white border border-white hover:opacity-80",
-
-        // States
+        "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-300 active:scale-95",
+        variants[variant],
+        sizes[size],
         fullWidth && "w-full",
-        disabled && "opacity-50 cursor-not-allowed",
-
+        disabled && "opacity-50 cursor-not-allowed grayscale",
         className
       )}
+      {...props}
     >
-      {leftIcon && <span className="flex items-center">{leftIcon}</span>}
-      {children}
-      {rightIcon && <span className="flex items-center">{rightIcon}</span>}
+      {leftIcon && <span className="shrink-0">{leftIcon}</span>}
+      <span className="relative z-10">{children}</span>
+      {rightIcon && <span className="shrink-0">{rightIcon}</span>}
     </motion.button>
   );
 }

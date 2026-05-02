@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Check, X, ArrowDown } from "lucide-react";
 
-const features = [
+const COMPARISON_FEATURES = [
   "True Native App",
   "Built-in CRO Features",
   "Personalization Engine",
@@ -11,134 +11,161 @@ const features = [
   "No Developer Needed",
 ];
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
+
 export default function Comparison() {
   return (
-    <section className="py-8 lg:py-20 px-8  lg:px-12">
-      <div className="w-full max-w-[1440px] mx-auto">
-
-        {/* HEADER */}
-        <div className="text-center mb-14">
-          <p className="text-xs tracking-[0.2em] uppercase text-gray-400">
+    <section className="py-16  md:py-24 px-4 bg-white overflow-hidden">
+      <div className="max-w-[1440px] mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12 md:mb-16 space-y-4"
+        >
+          <p className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-gray-400">
             HOW WE COMPARE
           </p>
-
-          <h2 className="text-2xl sm:text-3xl font-bold mt-2">
-            Shopifystore vs{" "}
-            <span className="text-[#7B61FF]">everything else</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+            Shopifystore vs <span className="text-[#8E6CEF]">everything else</span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* GRID */}
-        <div className="w-full flex flex-col items-center xl:flex-row gap-6 lg:items-start">
+        {/* Comparison Wrapper */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="rounded-[40px] md:rounded-[60px] p-6 md:p-12  border-solid border"
+          style={{
+            background: "linear-gradient(180deg, #FFFFFF 0%, rgba(202, 190, 236, 0.35) 100%) padding-box, linear-gradient(180deg, rgba(160, 140, 217, 0.4) 0%, #FFFFFF 100%) border-box",
+            borderColor: "transparent"
+          }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
 
-          {/* LEFT SIDE */}
-          <div className="w-full flex flex-col gap-6 mt-auto">
-
-            {/* CTA */}
-            <div className="flex items-center gap-2 text-sm">
-              <div className="flex gap-2 items-center mx-6">
-                <div className="w-6 h-6 flex items-center justify-center rounded-full border border-[#7B61FF] text-[#7B61FF]">
-                  <ArrowDown size={14} />
+            {/* Features Detail Card */}
+            <motion.div
+              custom={0}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-primary-card-gradient rounded-[32px] rounded-tr-[100px] p-8 md:p-10 text-white flex flex-col justify-between"
+            >
+              <div className="flex items-center gap-4 ">
+                <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center">
+                  <ArrowDown size={20} />
                 </div>
                 <div className="flex flex-col">
-                  <span className=" text-[10px] font-medium text-secondary">Get Started</span>
-                  <h3 className="font-base font-semibold">Features Details</h3>
+                  <span className="text-[10px] font-bold uppercase tracking-wider opacity-80">Get Started</span>
+                  <span className="text-lg font-bold">Features Details</span>
                 </div>
+
               </div>
+              <hr className="w-24 mt-3 mb-12 border border-white/30" />
 
 
-            </div>
-
-            {/* FEATURE CARD */}
-            <div className="rounded-[25px] w-full bg-primary-card-gradient text-white px-6 md:pr-[87px] md:pl-[40px] py-10">
-
-              <div className="flex flex-col gap-6  md:gap-[37px] text-[14px]">
-                {features.map((f, i) => (
-                  <p key={i} className="font-semibold text-base leading-none tracking-normal">{f}</p>
+              <div className="flex flex-col gap-10">
+                {COMPARISON_FEATURES.map((feature, i) => (
+                  <p key={i} className="font-semibold text-sm md:text-base whitespace-nowrap">
+                    {feature}
+                  </p>
                 ))}
               </div>
-            </div>
-          </div>
-          {/* Right Side */}
-          <div className="w-full   flex-col flex gap-4 lg:gap-3 sm:flex-row xl:flex-row md:gap-[15px]">
-            {/* COLUMNS */}
-            {[
-              {
-                title: "WEBVIEW BUILDERS",
-                items: [
-                  <Check className=" mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                  <span className="text-sm text-gray-500 text-center">2–4 weeks</span>,
-                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                ],
-              },
-              {
-                title: "CUSTOM DEV",
-                items: [
-                  <Check className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                  <X className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                  <span className="text-sm text-gray-500 text-center">Custom build</span>,
-                  <span className="text-sm text-gray-500 text-center">3–6 months</span>,
-                  <X className="mx-auto p-1 bg-customGray-100 rounded-full text-white" size={18} />,
-                ],
-              },
-              {
-                title: "SHOPIFYSTORE",
-                highlight: true,
-                items: [
-                  <Check className="mx-auto p-1 bg-secondary-100 rounded-full text-white" size={18} />,
-                  <div className="text-sm text-secondary-100 flex items-center justify-center gap-2 ">
-                    <Check className=" p-1 bg-secondary-100 rounded-full text-white" size={18} />
-                    <span>14 features</span>
-                  </div>,
-                  <div className="text-sm text-secondary-100 flex items-center justify-center gap-2 ">
-                    <Check className=" p-1 bg-secondary-100 rounded-full text-white" size={18} />
-                    <span>Included</span>
-                  </div>,
-                  <span className="text-sm text-secondary-100 text-center">7–14 days</span>,
-                  <Check className="mx-auto p-1 bg-secondary-100 rounded-full text-white" size={18} />,
-                ],
-              },
-            ].map((col, i) => (
-              <div
-                key={i}
-                className={`
-                w-full
-                lg:w-[295px]
-                rounded-[25px]
-                border border-secondary-light
-                px-6 py-8
-                md:px-8 md:py-10
-                h-fit
-                flex flex-col
-                justify-start gap-6
-                mg:gap-8
-                text-center
-                ${col.highlight
-                    ? "bg-white border-secondary-light shadow-[0_10px_30px_rgba(123,97,255,0.08)]"
-                    : "bg-white"
-                  }
-              `}
-              >
-                <h3
-                  className={`font-semibold text-[16px] leading-none tracking-normal text-center uppercase ${col.highlight ? "text-secondary-100" : "text-neutral"
-                    }`}
-                >
-                  {col.title}
-                </h3>
+            </motion.div>
 
-                <div className="flex flex-col justify-between flex-1 gap-8">
-                  {col.items.map((item, idx) => (
-                    <div key={idx} className="text-customGray-200">{item}</div>
-                  ))}
+            {/* WEBVIEW BUILDERS */}
+            <motion.div
+              custom={1}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm"
+            >
+              <h3 className="text-sm md:text-base font-semibold  uppercase text-neutral">WEBVIEW BUILDERS</h3>
+
+              <div className="flex flex-col gap-10 items-center w-full">
+                <div className="h-6 flex items-center justify-center"><Check className="text-white bg-[#63C194]  rounded-full p-1" size={20} strokeWidth={3} /></div>
+                <div className="h-6 flex items-center justify-center"><Check className="text-white bg-[#63C194]  rounded-full p-1" size={20} strokeWidth={3} /></div>
+                <div className="h-6 flex items-center justify-center"><Check className="text-white bg-[#63C194]  rounded-full p-1" size={20} strokeWidth={3} /></div>
+                <div className="h-6 flex items-center justify-center"><span className="text-gray-400 font-medium text-sm">2-4 weeks</span></div>
+                <div className="h-6 flex items-center justify-center"><Check className="text-white bg-[#63C194]  rounded-full p-1" size={20} strokeWidth={3} /></div>
+              </div>
+            </motion.div>
+
+            {/* CUSTOM DEV */}
+            <motion.div
+              custom={2}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm"
+            >
+              <h3 className="text-sm md:text-base font-semibold uppercase text-neutral">CUSTOM DEV</h3>
+
+              <div className="flex flex-col gap-10 items-center w-full text-center">
+                <div className="h-6 flex items-center justify-center"><Check className="text-white bg-[#63C194]  rounded-full p-1" size={20} strokeWidth={3} /></div>
+                <div className="h-6 flex items-center justify-center"><X className="text-white bg-[#FF6E70] rounded-full p-1" size={20} strokeWidth={3} /></div>
+                <div className="h-6 flex items-center justify-center"><span className="text-gray-400 font-medium text-sm">Custom build</span></div>
+                <div className="h-6 flex items-center justify-center"><span className="text-gray-400 font-medium text-sm">3-6 months</span></div>
+                <div className="h-6 flex items-center justify-center"><X className="text-white bg-[#FF6E70] rounded-full p-1" size={20} strokeWidth={3} /></div>
+              </div>
+            </motion.div>
+
+            {/* SHOPIFYSTORE */}
+            <motion.div
+              custom={3}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-md border-2 border-[#8E6CEF]/10 relative"
+            >
+              <h3 className="text-sm md:text-base font-semibold uppercase text-[#7962BC]">SHOPIFYSTORE</h3>
+
+              <div className="flex flex-col gap-10 items-center w-full text-center">
+                <div className="h-6 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-[#7962BC] flex items-center justify-center">
+                    <Check className="text-white" size={14} strokeWidth={4} />
+                  </div>
+                </div>
+                <div className="h-6 flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-[#7962BC] flex items-center justify-center">
+                    <Check className="text-white" size={12} strokeWidth={4} />
+                  </div>
+                  <span className="text-[#7962BC] font-bold text-sm">14 features</span>
+                </div>
+                <div className="h-6 flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 rounded-full bg-[#7962BC] flex items-center justify-center">
+                    <Check className="text-white" size={12} strokeWidth={4} />
+                  </div>
+                  <span className="text-[#7962BC] font-bold text-sm">Included</span>
+                </div>
+                <div className="h-6 flex items-center justify-center">
+                  <span className="text-[#7962BC] font-bold text-sm">7-14 days</span>
+                </div>
+                <div className="h-6 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-[#7962BC] flex items-center justify-center">
+                    <Check className="text-white" size={14} strokeWidth={4} />
+                  </div>
                 </div>
               </div>
-            ))}
+            </motion.div>
+
           </div>
-
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

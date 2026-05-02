@@ -70,7 +70,7 @@ export default function Footer() {
           {/* LEFT - BRAND */}
           <div className="space-y-4 max-w-[320px]">
             <h2 className="text-[28px] font-bold text-secondary">
-             Shopifystore
+              Shopifystore
             </h2>
 
             <p className="text-[14px] leading-[24px] text-[#A3AED0]">

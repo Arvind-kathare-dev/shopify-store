@@ -2,74 +2,84 @@
 
 import Image from "next/image";
 import Button from "@/components/Button";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FormModal } from "@/components/model/FormModal";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function CTABanner() {
-   const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="w-full flex justify-center items-center">
-     <section className="w-full max-w-[1440px] py-8  lg:py-10 px-4 md:px-10">
-      <div className="relative rounded-2xl  lg:rounded-[48px] bg-primary-gradient">
+    <section className="w-full scroll-mt-20 px-4 py-16 md:py-24">
+      <div className="max-w-[1440px] mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative rounded-3xl lg:rounded-[48px] bg-primary-gradient"
+        >
+          {/* Watermark Background */}
+          <div className="absolute inset-0 flex items-center justify-center md:justify-start pointer-events-none select-none overflow-hidden rounded-3xl lg:rounded-[48px]">
+            <span className="text-[clamp(80px,25vw,300px)] font-black text-white/[0.03] leading-none -ml-4 md:ml-12">
+              Shopify
+            </span>
+          </div>
 
-        {/* Watermark */}
-        <span className="absolute left-0 md:left-10 top-1/2 -translate-y-1/2 text-[clamp(120px,18vw,260px)] font-bold text-white/5 pointer-events-none select-none">
-          Shopify
-        </span>
+          {/* Content Container */}
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between px-6 py-12 md:px-16 md:py-20 gap-10">
+            
+            {/* LEFT CONTENT */}
+            <div className="max-w-xl text-center md:text-left flex flex-col items-center md:items-start gap-6">
+              <div className="space-y-4">
+                <h2 className="text-white text-[28px] md:text-[34px] font-bold leading-tight">
+                  Ready to turn mobile traffic <br className="hidden md:block" /> into revenue?
+                </h2>
+                <p className="text-white/80 text-sm md:text-base max-w-lg">
+                  Join growing Shopify brands using Storemo to sell more on mobile — no developers, no risk.
+                </p>
+              </div>
 
-        {/* Content */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 gap-10">
+              {/* Buttons Group */}
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setOpen(true)}
+                  className="w-full sm:w-auto"
+                >
+                  Get Started Free
+                </Button>
+                <Link href="#demo" className="w-full sm:w-auto">
+                  <Button variant="whiteBorder" className="w-full sm:w-auto">
+                    Watch Demo
+                  </Button>
+                </Link>
+              </div>
 
-          {/* LEFT CONTENT */}
-          <div className="max-w-xl text-center md:text-left">
-            <h2 className="text-white text-[28px] md:text-[34px] font-bold leading-tight">
-              Ready to turn mobile traffic into revenue?
-            </h2>
-
-            <p className="text-white/80 mt-3 text-sm md:text-base">
-              Join growing Shopify brands using Storemo to sell more on mobile —
-              no developers, no risk.
-            </p>
-
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row items-center md:items-start gap-3 mt-6">
-              <Button variant="outline" onClick={() => setOpen(true)}>
-                Get Started Free
-              </Button>
-<Link href={"#demo"}>
-<Button variant="whiteBorder">
-                Watch Demo
-              </Button>
-</Link>
-              
+              {/* Trust Indicators */}
+              <p className="text-white/60 text-xs mt-1">
+                60-day money-back guarantee · No credit card required · Launch in 14 days
+              </p>
             </div>
 
-            {/* Trust Text */}
-            <p className="text-white/60 text-xs mt-3">
-              60-day money-back guarantee · No credit card required · Launch in 14 days
-            </p>
+            {/* RIGHT IMAGE - Restored to original position */}
+            <div className="absolute -top-[108px] right-0 w-full lg:w-[380px] justify-center lg:justify-end lg:flex hidden pointer-events-none">
+              <Image
+                src="/images/bannerImg2.png"
+                alt="Mobile preview"
+                width={350}
+                height={280}
+                className="object-contain translate-y-6 lg:translate-y-10"
+                priority
+              />
+            </div>
           </div>
-
-          {/* RIGHT IMAGE */}
-          <div className="absolute -top-[108px] right-0 w-full md:w-[380px]  justify-center md:justify-end md:flex hidden">
-            <Image
-              src="/images/bannerImg2.png"
-              alt="Mobile preview"
-              width={350}
-              height={280}
-              className="object-contain translate-y-6 md:translate-y-10"
-              priority
-            />
-          </div>
-        </div>
+        </motion.div>
       </div>
+
+      <AnimatePresence>
+        {open && <FormModal onClose={() => setOpen(false)} />}
+      </AnimatePresence>
     </section>
-     <AnimatePresence>
-                {open && <FormModal onClose={() => setOpen(false)} />}
-            </AnimatePresence>
-    </div>
-   
   );
 }

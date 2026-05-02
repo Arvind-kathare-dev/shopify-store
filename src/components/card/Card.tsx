@@ -9,13 +9,9 @@ type CardProps = {
   title: string;
   desc: string;
   index?: number;
-
-  // 🔑 Customization props
   bgGradient?: string;
   borderClass?: string;
   className?: string;
-
-  // animation
   variants?: any;
 };
 
@@ -35,30 +31,30 @@ export const Card = ({
       whileInView="show"
       viewport={{ once: true }}
       className={clsx(
-        " rounded-2xl lg:rounded-[30px] p-6 lg:pt-[39px] lg:pb-[33] lg:pl-[32px] lg:pr-[60px] bg-white shadow  shadow-gradient-gray",
+        "rounded-[24px] lg:rounded-[32px] p-8 md:p-10",
+        "bg-white border border-gray-100",
+        "shadow-soft transition-all duration-300 hover:border-secondary/30 hover:shadow-md group",
         className
       )}
     >
-        <div className="flex flex-col gap-[15px]">
- {/* VALUE */}
-      <h3 className="font-bold text-[48px] text-secondary leading-none tracking-normal">
-        {value}
-      </h3>
+      <div className="flex flex-col gap-6">
+        {/* VALUE */}
+        <h3 className="font-bold text-3xl md:text-[48px] text-secondary leading-none tracking-tight group-hover:scale-105 transition-transform origin-left">
+          {value}
+        </h3>
 
-<div className="flex flex-col gap-[7px]">
- {/* TITLE */}
-      <p className="font-medium text-xl leading-none tracking-normal">
-        {title}
-      </p>
+        <div className="flex flex-col gap-3">
+          {/* TITLE */}
+          <p className="font-medium text-lg md:text-[24px] leading-tight text-black tracking-tight">
+            {title}
+          </p>
 
-      {/* DESC */}
-      <p className="font-normal text-sm leading-5 tracking-normal text-neutral">
-        {desc}
-      </p>
-</div>
-     
+          {/* DESC */}
+          <p className="font-normal text-sm md:text-base leading-relaxed text-[#858585]">
+            {desc}
+          </p>
         </div>
-     
+      </div>
     </motion.div>
   );
 };
