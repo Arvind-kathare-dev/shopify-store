@@ -22,8 +22,8 @@ export default function Page() {
       <NumbersAdvanced />
       <TimelineSteps />
       <FeaturesAdvanced />
-      <VideoSection />
       <ToolsGrid />
+      <VideoSection />
       <RevenueUpside />
       <CaseStudy />
       <Comparison />
