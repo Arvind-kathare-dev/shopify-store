@@ -72,7 +72,7 @@ const CaseStudy = () => {
             className="flex flex-col lg:flex-row gap-10 items-center justify-between p-6 md:p-10 lg:p-14"
             style={{ background: "linear-gradient(278.48deg, #8F7DC2 0%, #7259BA 100%)" }}
           >
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -94,8 +94,8 @@ const CaseStudy = () => {
                 { val: "2.7%", label: "New Mobile Conversion Rate" },
                 { val: "$2,140k", label: "Additional Monthly Revenue" }
               ].map((stat, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -111,7 +111,7 @@ const CaseStudy = () => {
 
           {/* Bottom White Timeline Section */}
           <div className="p-6 md:p-12 lg:p-16">
-            <motion.div 
+            <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="show"
@@ -126,17 +126,17 @@ const CaseStudy = () => {
                 >
                   {/* Vertical Dotted Line Segment */}
                   {index !== timelineData.length - 1 && (
-                    <motion.div 
+                    <motion.div
                       initial={{ scaleY: 0 }}
                       whileInView={{ scaleY: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
                       style={{ originY: 0 }}
-                      className="absolute left-8 md:left-[45px] top-8 md:top-[45px] bottom-0 w-px border-l-2 border-dotted border-[#7259BA] z-0 opacity-40" 
+                      className="absolute left-8 md:left-[45px] top-8 md:top-[45px] bottom-0 w-px border-l-2 border-dotted border-[#7259BA] z-0 opacity-40"
                     />
                   )}
 
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
@@ -152,7 +152,7 @@ const CaseStudy = () => {
                     />
                   </motion.div>
                   <div className="pt-1 md:pt-3 relative z-10">
-                    <motion.span 
+                    <motion.span
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -161,7 +161,7 @@ const CaseStudy = () => {
                     >
                       {item.day}
                     </motion.span>
-                    <motion.h3 
+                    <motion.h3
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -170,7 +170,7 @@ const CaseStudy = () => {
                     >
                       {item.title}
                     </motion.h3>
-                    <motion.p 
+                    <motion.p
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -212,7 +212,7 @@ const CaseStudy = () => {
           className="mt-8 md:mt-12 bg-[#FFF9E6] border border-[#FFE8A3] rounded-[32px] p-6 md:p-10 flex flex-col lg:flex-row items-center justify-between gap-8"
         >
           <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6">
-            <motion.div 
+            <motion.div
               animate={{ rotate: [0, -5, 5, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-[0_10px_25px_-5px_rgba(230,168,0,0.1)] flex-shrink-0"

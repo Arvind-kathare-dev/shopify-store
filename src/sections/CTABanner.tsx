@@ -16,7 +16,7 @@ export default function CTABanner() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative rounded-3xl lg:rounded-[48px] bg-primary-gradient"
         >
@@ -24,7 +24,7 @@ export default function CTABanner() {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 1.2, delay: 0.2 }}
             className="absolute inset-0 flex items-center justify-center md:justify-start pointer-events-none select-none overflow-hidden rounded-3xl lg:rounded-[48px]"
           >
@@ -40,7 +40,7 @@ export default function CTABanner() {
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="max-w-xl text-center md:text-left flex flex-col items-center md:items-start gap-6"
             >
@@ -79,7 +79,7 @@ export default function CTABanner() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
               className="absolute -top-[108px] right-0 w-full lg:w-[380px] justify-center lg:justify-end lg:flex hidden pointer-events-none"
             >

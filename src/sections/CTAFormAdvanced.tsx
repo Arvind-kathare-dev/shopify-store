@@ -95,7 +95,7 @@ export default function CTAFormAdvanced() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             className="space-y-6"
           >
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-primary-light/70">Strategy Call</p>
@@ -120,7 +120,7 @@ export default function CTAFormAdvanced() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           className="flex-1 w-full max-w-[700px] bg-white rounded-[32px] p-6 md:p-12 shadow-2xl flex flex-col min-h-[500px]"
         >
           <AnimatePresence mode="wait">

@@ -11,10 +11,12 @@ import CTABanner from "@/sections/CTABanner";
 import Footer from "@/sections/Footer";
 import RevenueUpside from "@/sections/RevenueUpside";
 import CaseStudy from "@/sections/CaseStudy";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Page() {
   return (
     <main className="min-h-screen w-full overflow-x-hidden">
+      <ScrollToTop />
       <HeroSection />
       <NumbersAdvanced />
       <TimelineSteps />

@@ -53,7 +53,7 @@ export default function NumbersAdvanced() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
@@ -71,7 +71,7 @@ export default function NumbersAdvanced() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {stats.map((item, i) => (

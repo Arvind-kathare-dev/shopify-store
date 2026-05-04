@@ -47,7 +47,7 @@ export default function Comparison() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12 md:mb-16 space-y-4"
         >
@@ -63,7 +63,7 @@ export default function Comparison() {
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8 }}
           className="rounded-[40px] md:rounded-[60px] p-6 md:p-12  border-solid border"
           style={{
@@ -75,7 +75,7 @@ export default function Comparison() {
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
           >
 

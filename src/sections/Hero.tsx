@@ -91,7 +91,7 @@ export default function HeroSection() {
               animate="animate"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 1 }}
               className="absolute left-[32px] bottom-[140px] z-10 bg-white rounded-2xl shadow-lg pt-[16px] pb-[16px] pl-[17px] pr-[59px] md:flex hidden items-center gap-3 border border-gray-100"
             >
@@ -112,7 +112,7 @@ export default function HeroSection() {
               animate="animate"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 1, delay: 0.2 }}
               className="absolute -right-[96px] top-[160px] z-10 bg-primary-gradient rounded-[20px] shadow-lg px-3 py-2 md:flex hidden items-center gap-3"
             >
@@ -143,7 +143,7 @@ export default function HeroSection() {
               animate="animate"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 1, delay: 0.4 }}
               className="absolute right-[48px] bottom-[64px] z-10 bg-white rounded-xl shadow-lg pl-[17px] pr-[49px] py-4 md:flex hidden items-center gap-[11px] border border-gray-100"
             >
@@ -166,7 +166,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             className="flex gap-8 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
             transition={{

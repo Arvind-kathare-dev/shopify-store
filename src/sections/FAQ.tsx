@@ -55,7 +55,7 @@ export default function FAQ() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           className="text-center flex flex-col gap-[7px]"
         >
           <p className="font-normal text-neutral text-sm leading-none tracking-[0.1em] uppercase">
@@ -82,7 +82,7 @@ export default function FAQ() {
                 custom={i}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-40px" }}
                 className={`rounded-xl border transition ${isOpen
                   ? "border-secondary bg-white shadow-sm"
                   : "border-transparent bg-background-faq hover:bg-gray-100/50"

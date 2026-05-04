@@ -64,7 +64,7 @@ export default function FeaturesAdvanced() {
               </p>
             </div>
 
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="relative w-full h-[300px]"
@@ -105,7 +105,7 @@ export default function FeaturesAdvanced() {
                 </div>
               </div>
 
-              <motion.div 
+              <motion.div
                 className="relative md:absolute md:bottom-0 md:right-0 w-full md:w-[327px] h-[200px] md:h-[245px] origin-bottom-right transition-transform duration-500 group-hover:scale-105"
               >
                 <Image

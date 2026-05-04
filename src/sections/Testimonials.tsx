@@ -116,7 +116,7 @@ export default function Testimonials() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-center md:text-left space-y-4"
           >
@@ -134,7 +134,7 @@ export default function Testimonials() {
                     key={i}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-40px" }}
                     transition={{ delay: 0.1 * i, type: "spring" }}
                     className="w-6 h-6 flex items-center justify-center rounded-md shadow-sm"
                     style={{

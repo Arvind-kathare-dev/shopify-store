@@ -62,7 +62,7 @@ const RevenueUpside = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6 }}
             >
               <span className="text-[#858585] uppercase tracking-[0.2em] text-[10px] md:text-xs font-normal mb-3 md:mb-5 block">
@@ -143,7 +143,7 @@ const RevenueUpside = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
               className="bg-white rounded-[32px] md:rounded-[48px] p-6 md:p-12 w-full shadow-[0_20px_60px_-15px_rgba(142,108,239,0.08)] border border-[#F1EEFF] relative overflow-hidden"
             >

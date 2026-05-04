@@ -30,7 +30,7 @@ export default function VideoSection() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
             className="flex flex-col gap-6 max-w-xl text-center lg:text-left"
           >
@@ -57,7 +57,7 @@ export default function VideoSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
             className="relative w-full group"
           >
@@ -90,7 +90,7 @@ export default function VideoSection() {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: 0.6 }}
                 className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-white/80 font-medium border border-white/10"
               >

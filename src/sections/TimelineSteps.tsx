@@ -58,7 +58,7 @@ export default function TimelineSteps() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.8 }}
           className="mb-10 md:mb-16 space-y-2"
         >
@@ -75,7 +75,7 @@ export default function TimelineSteps() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-40px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8"
         >
           {STEPS.map((step, i) => (
