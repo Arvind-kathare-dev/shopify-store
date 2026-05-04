@@ -8,6 +8,7 @@ import HeroSection from "@/sections/Hero";
 import NumbersAdvanced from "@/sections/NumbersAdvanced";
 import TimelineSteps from "@/sections/TimelineSteps";
 import CTABanner from "@/sections/CTABanner";
+import ToolsGrid from "@/sections/ToolsGrid";
 import Footer from "@/sections/Footer";
 import RevenueUpside from "@/sections/RevenueUpside";
 import CaseStudy from "@/sections/CaseStudy";
@@ -22,6 +23,7 @@ export default function Page() {
       <TimelineSteps />
       <FeaturesAdvanced />
       <VideoSection />
+      <ToolsGrid />
       <RevenueUpside />
       <CaseStudy />
       <Comparison />
