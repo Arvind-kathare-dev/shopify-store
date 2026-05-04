@@ -18,21 +18,22 @@ const stats = [
 ];
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }
 };
 
-const floating = {
+const floating = (delay: number = 0) => ({
   animate: {
-    y: [0, -10, 0],
+    y: [0, -15, 0],
     transition: {
-      duration: 4,
+      duration: 5,
       repeat: Infinity,
-      ease: "easeInOut"
+      ease: "easeInOut" as const,
+      delay
     }
   }
-};
+});
 
 export default function HeroSection() {
   const [open, setOpen] = useState(false);
@@ -66,9 +67,9 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
+              transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
               className="flex flex-col md:flex-row items-center gap-4"
             >
               <Button variant="secondary" onClick={() => setOpen(true)} rightIcon={<ArrowRight size={20} />}>
@@ -86,8 +87,13 @@ export default function HeroSection() {
           <div className="relative w-full max-w-3xl flex justify-center items-end">
             {/* Left Floating Card - 7-14 days */}
             <motion.div
+              variants={floating(0)}
               animate="animate"
-              className="absolute left-[32px] bottom-[140px] z-10 bg-white rounded-2xl shadow-lg pt-[16px] pb-[16px] pl-[17px] pr-[59px] md:flex hidden items-center gap-3"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="absolute left-[32px] bottom-[140px] z-10 bg-white rounded-2xl shadow-lg pt-[16px] pb-[16px] pl-[17px] pr-[59px] md:flex hidden items-center gap-3 border border-gray-100"
             >
               <div className="w-[50px] h-[50px] rounded-full bg-yellow-light flex items-center justify-center">
                 <svg className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
@@ -102,8 +108,12 @@ export default function HeroSection() {
 
             {/* Right Floating Card - CRO features */}
             <motion.div
+              variants={floating(1)}
               animate="animate"
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.2 }}
               className="absolute -right-[96px] top-[160px] z-10 bg-primary-gradient rounded-[20px] shadow-lg px-3 py-2 md:flex hidden items-center gap-3"
             >
               <div className="w-[70px] h-[70px] rounded-xl flex items-center justify-center">
@@ -119,9 +129,9 @@ export default function HeroSection() {
 
             {/* Phone Mockup */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-0 mx-auto w-[437.6px] md:p-0 px-6"
             >
               <Image src="/images/mobileImg.png" alt="img" width={450} height={500} priority />
@@ -129,9 +139,13 @@ export default function HeroSection() {
 
             {/* Star rating card */}
             <motion.div
+              variants={floating(2)}
               animate="animate"
-              transition={{ delay: 1 }}
-              className="absolute right-[48px] bottom-[64px] z-10 bg-white rounded-xl shadow-lg pl-[17px] pr-[49px] py-4 md:flex hidden items-center gap-[11px]"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="absolute right-[48px] bottom-[64px] z-10 bg-white rounded-xl shadow-lg pl-[17px] pr-[49px] py-4 md:flex hidden items-center gap-[11px] border border-gray-100"
             >
               <div className="w-[50px] h-[50px] rounded-full bg-yellow-light flex items-center justify-center">
                 <svg className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -150,19 +164,25 @@ export default function HeroSection() {
         {/* Stats Bar */}
         <div className="bg-primary py-5 overflow-hidden">
           <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             className="flex gap-8 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              repeat: Infinity,
-              duration: 20,
-              ease: "linear",
+              x: {
+                repeat: Infinity,
+                duration: 30,
+                ease: "linear",
+              },
+              opacity: { duration: 1 }
             }}
           >
             {/* Duplicate content for seamless loop */}
             {[...stats, ...stats].map((stat, i) => (
               <span
                 key={i}
-                className="text-white text-sm px-4 flex-shrink-0"
+                className="text-white text-sm px-4 flex-shrink-0 font-medium tracking-wide"
               >
                 {stat}
               </span>

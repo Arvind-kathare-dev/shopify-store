@@ -24,6 +24,21 @@ const fadeInUp = {
   }),
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const columnVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
 export default function Comparison() {
   return (
     <section className="py-16  md:py-24 px-4 bg-white overflow-hidden">
@@ -33,6 +48,7 @@ export default function Comparison() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-12 md:mb-16 space-y-4"
         >
           <p className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-gray-400">
@@ -48,21 +64,24 @@ export default function Comparison() {
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="rounded-[40px] md:rounded-[60px] p-6 md:p-12  border-solid border"
           style={{
             background: "linear-gradient(180deg, #FFFFFF 0%, rgba(202, 190, 236, 0.35) 100%) padding-box, linear-gradient(180deg, rgba(160, 140, 217, 0.4) 0%, #FFFFFF 100%) border-box",
             borderColor: "transparent"
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+          >
 
             {/* Features Detail Card */}
             <motion.div
-              custom={0}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              variants={columnVariants}
               className="bg-primary-card-gradient rounded-[32px] rounded-tr-[100px] p-8 md:p-10 text-white flex flex-col justify-between"
             >
               <div className="flex items-center gap-4 ">
@@ -89,11 +108,8 @@ export default function Comparison() {
 
             {/* WEBVIEW BUILDERS */}
             <motion.div
-              custom={1}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm"
+              variants={columnVariants}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm hover:shadow-md transition-shadow"
             >
               <h3 className="text-sm md:text-base font-semibold  uppercase text-neutral">WEBVIEW BUILDERS</h3>
 
@@ -108,11 +124,8 @@ export default function Comparison() {
 
             {/* CUSTOM DEV */}
             <motion.div
-              custom={2}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm"
+              variants={columnVariants}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-sm hover:shadow-md transition-shadow"
             >
               <h3 className="text-sm md:text-base font-semibold uppercase text-neutral">CUSTOM DEV</h3>
 
@@ -127,12 +140,10 @@ export default function Comparison() {
 
             {/* SHOPIFYSTORE */}
             <motion.div
-              custom={3}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-md border-2 border-[#8E6CEF]/10 relative"
+              variants={columnVariants}
+              className="bg-white rounded-[32px] p-8 md:p-10 flex flex-col items-center gap-12 shadow-md border-2 border-[#8E6CEF]/10 relative hover:shadow-lg transition-shadow"
             >
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#8E6CEF] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Recommended</div>
               <h3 className="text-sm md:text-base font-semibold uppercase text-[#7962BC]">SHOPIFYSTORE</h3>
 
               <div className="flex flex-col gap-10 items-center w-full text-center">
@@ -164,7 +175,7 @@ export default function Comparison() {
               </div>
             </motion.div>
 
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

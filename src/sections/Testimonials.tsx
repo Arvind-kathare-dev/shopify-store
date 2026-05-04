@@ -53,26 +53,23 @@ const testimonials: Testimonial[] = [
 
 const cardVariants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 100 : -100,
+    x: direction > 0 ? "50%" : "-50%",
     opacity: 0,
-    scale: 0.95,
   }),
   center: {
     x: 0,
     opacity: 1,
-    scale: 1,
     transition: {
-      duration: 0.4,
-      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
   exit: (direction: number) => ({
-    x: direction < 0 ? 100 : -100,
+    x: direction < 0 ? "50%" : "-50%",
     opacity: 0,
-    scale: 0.95,
     transition: {
-      duration: 0.3,
-      ease: "easeIn",
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
 };
@@ -117,9 +114,10 @@ export default function Testimonials() {
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 mb-12">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-center md:text-left space-y-4"
           >
             <p className="text-sm font-normal tracking-[0.2em] uppercase text-neutral">
@@ -132,8 +130,12 @@ export default function Testimonials() {
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
               <div className="flex items-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((i) => (
-                  <div
+                  <motion.div
                     key={i}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * i, type: "spring" }}
                     className="w-6 h-6 flex items-center justify-center rounded-md shadow-sm"
                     style={{
                       background: i <= 4 
@@ -142,7 +144,7 @@ export default function Testimonials() {
                     }}
                   >
                     <Star size={13} className="text-white fill-white" />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <div className="flex items-center gap-2 text-[13px] font-normal">
@@ -154,36 +156,43 @@ export default function Testimonials() {
 
           {/* Navigation */}
           <div className="flex items-center gap-3">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={handlePrev}
               disabled={index === 0}
               className="w-12 h-12 rounded-full bg-white shadow-soft flex items-center justify-center hover:bg-gray-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed group border border-gray-100"
             >
               <ChevronLeft size={20} className="text-gray-600 group-hover:text-secondary transition-colors" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={handleNext}
               disabled={index + visibleCount >= testimonials.length}
               className="w-12 h-12 rounded-full bg-secondary text-white shadow-soft flex items-center justify-center hover:opacity-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed border border-secondary/20"
             >
               <ChevronRight size={20} />
-            </button>
+            </motion.button>
           </div>
         </div>
 
         {/* Carousel Area */}
-        <div className="relative min-h-[320px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
+        <div className="relative min-h-[380px] md:min-h-[320px] w-full">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={index}
+              custom={direction}
+              variants={cardVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="absolute inset-0 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
               {visibleCards.map((testimonial, i) => (
-                <motion.div
-                  key={testimonial.name + index + i}
-                  custom={direction}
-                  // variants={cardVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="bg-white rounded-[32px] p-8 md:p-10 shadow-sm border border-gray-50 flex flex-col justify-between hover:shadow-md transition-shadow"
+                <div
+                  key={testimonial.name + i}
+                  className="bg-white rounded-[32px] p-8 md:p-10 shadow-sm border border-gray-50 flex flex-col justify-between hover:shadow-lg hover:border-secondary/20 transition-all group h-full"
                 >
                   <div className="space-y-6">
                     <div className="flex gap-1">
@@ -195,13 +204,13 @@ export default function Testimonials() {
                         />
                       ))}
                     </div>
-                    <p className="text-xs md:text-sm text-black font-normal leading-relaxed italic">
+                    <p className="text-xs md:text-sm text-black font-normal leading-relaxed italic group-hover:text-gray-900 transition-colors">
                       {testimonial.text}
                     </p>
                   </div>
 
                   <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-50">
-                    <div className="relative w-[42px] h-[42px] rounded-full overflow-hidden bg-gray-100 ring-2 ring-secondary/10">
+                    <div className="relative w-[42px] h-[42px] rounded-full overflow-hidden bg-gray-100 ring-2 ring-secondary/10 group-hover:ring-secondary/30 transition-all">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
@@ -214,10 +223,10 @@ export default function Testimonials() {
                       <p className="text-[10px] font-normal text-[#858585] tracking-wider">{testimonial.role}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </AnimatePresence>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

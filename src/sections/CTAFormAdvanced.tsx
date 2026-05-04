@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Phone, CheckCircle, ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { Lock, Phone, CheckCircle, ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react";
 import { CustomInput } from "@/components/ui/CustomInput";
 import { StepIndicator } from "@/components/StepIndicator";
 import { slideVariants } from "@/lib/motion";
@@ -205,7 +205,7 @@ export default function CTAFormAdvanced() {
                 >
                   <button
                     onClick={resetForm}
-                    className="group relative inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white rounded-full font-bold text-lg shadow-2xl hover:bg-gray-800 transition-all active:scale-95 overflow-hidden"
+                    className="group relative inline-flex items-center gap-3 px-10 py-5 bg-secondary text-white rounded-full font-bold text-lg shadow-2xl hover:bg-secondary/80 transition-all active:scale-95 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                     <span className="relative">Start New Request</span>
@@ -280,14 +280,23 @@ export default function CTAFormAdvanced() {
                     onClick={next}
                     disabled={!canNext() || loading}
                     className={`flex items-center gap-3 px-8 py-4 rounded-full text-sm font-black transition-all duration-300 ${loading
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      ? "bg-secondary/80 text-white cursor-not-allowed"
                       : canNext()
                         ? "bg-secondary text-white shadow-xl shadow-purple-100 hover:opacity-90"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                       }`}
                   >
-                    {loading ? "Submitting..." : step === 3 ? "Launch Plan" : "Continue"}
-                    {!loading && <ArrowRight size={18} />}
+                    {loading ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        {step === 3 ? "Launch Plan" : "Continue"}
+                        <ArrowRight size={18} />
+                      </>
+                    )}
                   </motion.button>
                 </div>
               </motion.div>

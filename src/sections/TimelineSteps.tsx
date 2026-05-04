@@ -35,6 +35,21 @@ const STEPS = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
 export default function TimelineSteps() {
   return (
     <section className="py-20 md:py-32 px-4 bg-white overflow-hidden">
@@ -44,6 +59,7 @@ export default function TimelineSteps() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="mb-10 md:mb-16 space-y-2"
         >
           <h2 className="text-2xl md:text-[32px] font-bold text-black tracking-tight leading-tight">
@@ -55,15 +71,18 @@ export default function TimelineSteps() {
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8"
+        >
           {STEPS.map((step, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center group"
+              variants={itemVariants}
+              className="flex flex-col items-center"
             >
               {/* Icon & Pill Container */}
               <div className="relative mb-8 pt-6">
@@ -75,7 +94,7 @@ export default function TimelineSteps() {
                 </div>
 
                 {/* Icon Circle */}
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#F1EDFF] flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:bg-[#EBE8F4] shadow-sm relative z-0">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#F1EDFF] flex items-center justify-center relative z-0">
                   {step.icon}
                 </div>
               </div>
@@ -91,7 +110,7 @@ export default function TimelineSteps() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

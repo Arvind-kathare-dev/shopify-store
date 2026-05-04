@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Phone, CheckCircle, X, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Lock, Phone, CheckCircle, X, ArrowRight, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import { StepIndicator } from "../StepIndicator";
 import { CustomInput } from "../ui/CustomInput";
 import { ACHIEVE_OPTIONS, FEATURES_OPTIONS, LAUNCH_OPTIONS, REVENUE_OPTIONS, SELL_OPTIONS } from "@/constants/multiStepData";
@@ -270,14 +270,23 @@ export function FormModal({ onClose }: ModalProps) {
                     onClick={next}
                     disabled={!canNext() || loading}
                     className={`flex items-center gap-3 px-8 py-4 rounded-full text-sm font-black transition-all duration-300 ${loading
-                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      ? "bg-secondary/80 text-white cursor-not-allowed"
                       : canNext()
                         ? "bg-secondary text-white shadow-xl shadow-purple-100 hover:opacity-90"
                         : "bg-gray-100 text-gray-400 cursor-not-allowed"
                       }`}
                   >
-                    {loading ? "Submitting..." : step === 3 ? "Get My Plan" : "Continue"}
-                    {!loading && <ArrowRight size={18} />}
+                    {loading ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        {step === 3 ? "Get My Plan" : "Continue"}
+                        <ArrowRight size={18} />
+                      </>
+                    )}
                   </motion.button>
                 </div>
               </div>

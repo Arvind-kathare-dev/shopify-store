@@ -32,8 +32,8 @@ export default function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${isScrolled
-            ? "border-b border-border/60 bg-white/80 backdrop-blur-md shadow-soft"
-            : "bg-white"
+          ? "bg-white/90 backdrop-blur-md shadow-md"
+          : "bg-white"
           }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -72,9 +72,23 @@ export default function Navbar() {
               aria-label="Toggle menu"
               aria-expanded={isOpen}
               onClick={() => setIsOpen((v) => !v)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground md:hidden hover:bg-muted transition-colors"
+              className="inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-md text-foreground md:hidden hover:bg-muted transition-colors relative z-50"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <motion.span
+                animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="block h-[2px] w-6 rounded-full bg-current"
+              />
+              <motion.span
+                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="block h-[2px] w-6 rounded-full bg-current"
+              />
+              <motion.span
+                animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="block h-[2px] w-6 rounded-full bg-current"
+              />
             </button>
           </div>
         </div>

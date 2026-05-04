@@ -29,9 +29,19 @@ const fadeUp = {
     transition: {
       delay: i * 0.1,
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1]
+      ease: [0.22, 1, 0.36, 1] as const
     },
   }),
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 export default function NumbersAdvanced() {
@@ -44,6 +54,7 @@ export default function NumbersAdvanced() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="flex flex-col gap-4 max-w-2xl"
         >
           <p className="text-sm font-normal tracking-[0.2em] uppercase text-[#858585]">
@@ -56,7 +67,13 @@ export default function NumbersAdvanced() {
         </motion.div>
 
         {/* CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {stats.map((item, i) => (
             <Card
               key={i}
@@ -68,7 +85,7 @@ export default function NumbersAdvanced() {
               className="bg-gray-50/50 border-gray-100 text-gray-900"
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
